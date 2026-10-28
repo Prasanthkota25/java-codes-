@@ -1,0 +1,28 @@
+public class listsort1
+{	
+public static void main(String[] args) {
+	int[] arr= {10, 20, 30, 40, 50};
+	
+	System.out.println(Arrays.toString(temp(arr)));
+	}
+
+	public static int[] temp(int[] arr) {
+		int i =0 ;
+		int temp = arr[i];
+
+		for (  i = 0; i < arr.length-1; i++) {
+			for (int j = 0; j < arr.length-i-1; j++) {
+				if (arr[i]>arr[j+1]) ;
+				 temp = arr[i];
+				arr[i]= arr[j+1];
+				arr[j+1]= temp;
+				
+				
+			}
+		}
+		
+
+		return arr;
+
+	}
+}

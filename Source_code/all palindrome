@@ -1,0 +1,317 @@
+
+
+1///////////
+
+
+
+
+public class palindrome {
+	public static void main(String[] args) {
+
+		String str = "madam";
+		String str1 = "";
+
+		for (int i = str.length() - 1; i >= 0; i--) {
+			str1 = str1 + str.charAt(i);
+
+		}
+
+		System.out.println(str.equals(str1));
+	}
+}
+
+
+
+
+                               or
+import java.util.Scanner;
+
+public class palindrome {
+	public static void main(String[] args) {
+		
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter the String:");
+
+		String str = sc.next();
+		String str1 = "";
+
+		for (int i = str.length() - 1; i >= 0; i--) {
+			str1 = str1 + str.charAt(i);
+
+		}
+
+		if(str.equals(str1)) {
+			System.out.println("given String is palindrome");
+			
+		}
+		else {
+			System.out.println("given String is not a palindrome");
+		}
+	}
+}
+
+
+
+
+2///////////
+
+
+
+
+import java.util.Scanner;
+
+public class palindrome {
+	public static void main(String[] args) {
+		
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter the sentence:");
+
+		String str = sc.nextLine();
+		String str1 = "";
+
+		for (int i = str.length() - 1; i >= 0; i--) {
+			str1 = str1 + str.charAt(i);
+
+		}
+
+		if(str.equals(str1)) {
+			System.out.println("given sentenceis palindrome");
+			
+		}
+		else {
+			System.out.println("given sentence is not a palindrome");
+		}
+	}
+}
+
+
+
+
+3/////////////////
+
+
+import java.util.Scanner;
+
+public class palidrome {
+	public static void main(String[] args) {
+		
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter the number:");
+		
+		int num=sc.nextInt();
+		int num1 = num;
+		
+		
+		
+	    int rev = 0;
+	 	while (num != 0) {
+			rev = rev * 10 + num % 10;
+			num = num / 10;
+ 
+		}
+		if (num1 == rev) {
+			System.out.println("given number is palindrome " );
+		} else {
+			System.out.println("given number is not palindrome" );
+		}
+ 
+	}
+
+}
+
+
+
+
+
+
+
+4//////////////
+
+
+import java.util.Scanner;
+
+public class palindrome {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the number:");
+
+		int num1 = sc.nextInt();
+		int num2 = sc.nextInt();
+
+		System.out.println("palindrome numbers  :");
+
+		for (int i = num1; i<= num2; i++) {
+
+			int n = i;
+			int rev = 0;
+			while (n > 0) {
+				int digit = n % 10;
+				rev = (rev * 10) + digit;
+				n = n / 10;
+
+			}
+			if (rev == i) {
+				System.out.println(i + "  ");
+			}
+
+		}
+
+	}
+}
+
+
+
+
+
+5////////////////////////
+
+
+
+public class palidrome {
+	 
+	public static void main(String[] args) {
+ 
+		String str = "Mom dad  went out   with racecar ";
+ 
+		str = str.toLowerCase();
+        String[] words = str.split("\\s+");
+		int palindromeCount = 0;
+ 
+		for (String word : words) {
+			if (isPalindrome(word)) {
+				palindromeCount++;
+			}
+		}
+ 
+		System.out.println("Number of palindrome words: " + palindromeCount);
+	}
+ 
+	public static boolean isPalindrome(String word) {
+		int left = 0;
+		int right = word.length() - 1;
+ 
+		while (left < right) {
+			if (word.charAt(left) != word.charAt(right)) {
+				return false;
+			}
+			left++;
+			right--;
+		}
+ 
+		return true;
+	}
+}
+
+
+
+
+6//////////////
+
+public class palidrome {
+	 
+	public static void main(String[] args) {
+ 
+		String str = "Mom dad  went out to watch malayalam movie ";
+ 
+		str = str.toLowerCase();
+ 
+		String[] words = str.split("\\s+");
+	     String longestPalindrome = "";
+
+	     
+	     
+	        for (String word : words) {
+	            if (isPalindrome(word) && word.length() > longestPalindrome.length()) {
+	                longestPalindrome = word;
+	            }
+	        }
+
+	        if (!longestPalindrome.isEmpty()) {
+	            System.out.println("Longest palindrome word: " + longestPalindrome);
+	        } else {
+	            System.out.println("No palindrome word found.");
+	        }
+	    }
+
+	
+ 
+	public static boolean isPalindrome(String word) {
+		int left = 0;
+		int right = word.length() - 1;
+ 
+		while (left < right) {
+			if (word.charAt(left) != word.charAt(right)) {
+				return false;
+			}
+			left++;
+			right--;
+		}
+ 
+		return true;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

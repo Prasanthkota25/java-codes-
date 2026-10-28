@@ -1,0 +1,79 @@
+1 
+>>>>> revesering the given string by manaually  by  using of the for loops concpet .
+>>>>> and converting the String("")  into the character (charAt()) method  for know the repeating count of characterof (i) .
+>>>>>> writen the tast cases in junit by method of String reverse () 
+
+
+>>>>>  Converting  comma separated String to ArrayList without useing the split function.
+>>>>> insted of using  split function we used the for loops concpet 
+>>>>> String is converted into the array.( String[])
+>>>>> writen the tast cases in junit by method of int count()
+
+2
+
+>>>>> longest substring  without repeating the character by useing of loops concpet   
+>>>>> given string is consider as  ascci values (128 ) and also converting  as the character (ch= charAt()) and  used the two varaiables (start,max )
+>>>>> start for the iterations of the loop and  max for the store the  maximum values of the iterations 
+>>>>> it will give the final out as the how many character are present in the given substring.
+>>>>> writen the tast cases in junit by the method of Valueof()
+
+
+>>>>> input of string is converted as the  lowercase method (toLowerCase())and it is consider as the character (ch= charAt()) 
+>>>>> for that character we are taking  length and count of it by use for loop concpet
+>>>>> checking that character with vowels  count (aeiou) and which is not match that vowels in it consider as the consonants 
+>>>>> writen the tast cases in junit  by the method of countOf ()
+
+3
+
+>>>>> checking the largest number of the given array by useing loop concpet
+>>>>> first finding the array length and checking greast numberin array by compareing each number  with the temp varaiable 
+>>>>> temp varaiable store the gratest number amoung them and gives the final output of it 
+>>>>>> writen the tast cases in junit and aslo  Created 5 different inputs by the method of   maxNum()
+
+
+
+>>>>>> removes duplicate values from below array by useing the loops concpet
+>>>>>> first finding the array length (arr.length())  and  checking the  duplicate values by temp varaiable 
+>>>>>> writen the tast cases in junit and aslo  Created 5 different inputs  by the method of  seriesOf() 
+
+
+4
+>>>>  Sort the list based on the digit sum of each item, in descending order.
+>>>>> given input is sorted  in descending order by use of loops concpet
+>>>>> this sorting is done by the bubble sorting method   and  writen the tast cases in junit and  by the method of  arraySortOf () 
+
+
+
+
+
+
+
+with this questions i learnt some basic concepts
+and Started the learning the java collection frame work concepts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

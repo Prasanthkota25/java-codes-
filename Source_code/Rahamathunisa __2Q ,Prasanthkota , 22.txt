@@ -1,0 +1,168 @@
+public class Vowels
+{
+public static void main (String [] args) {
+
+String str = "Java Programming" ;
+int count = 0 ; 
+
+int vCount =0;
+int cCount =0;
+
+str.toLowerCase();
+for (int i =0 ; i<str.length();i++){
+	if (str.charAt(i)!=' '){
+	count ++;
+}
+
+if (str.charAt(i)=='a' || str.charAt (i)=='e' || str.charAt(i)== 'i' || str.charAt(i)=='o' || str.charAt(i)=='u'){
+     vCount++;
+	}
+    else if((str.charAt(i)>'a' && str.charAt(i)<='z') ||(str.charAt(i)>'A' && str.charAt(i)<='Z')) {
+	cCount++;
+	}	
+}
+
+System.out.println("Total num of Vowels:"+ vCount);
+System.out.println("Total num of Consonants:" + cCount);
+}
+}
+
+
+
+
+
+
+                               junit 
+
+
+
+	public int countof(String str) {
+		
+		int vCount =0;
+
+
+		str.toLowerCase();
+		for (int i =0 ; i<str.length();i++){
+			if (str.charAt(i)!=' '){
+			 
+		}
+		if (str.charAt(i)=='a' || str.charAt (i)=='e' || str.charAt(i)== 'i' || str.charAt(i)=='o' || str.charAt(i)=='u'){
+		     vCount++;
+			}
+		 	
+		}
+		return vCount;
+	}
+	
+	
+		
+	@Test
+	public void countof() {
+		assertEquals(5, new StringDemo().countof("Java Programming"));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	package demotraining;
+
+public class demotraining {
+	public static void main(String[] args) {
+
+		String str = "abcabcbb";
+		String str2 = "abcbacbbebdcefghibjkklmn";
+		System.out.println(lengthOfSubString(str));
+		System.out.println(lengthOfSubString(str2));
+	}
+
+	public static int lengthOfSubString(String s) {
+		int[] last = new int[128];
+		for (int i = 0; i<128; i++) {
+			last[i] = -1;
+		}
+		
+		int start = 0;
+		int Max = 0;
+		
+		for (int i = 0; i<s.length(); i++) {
+			char c = s.charAt(i);
+			
+			start = Math.max(start, last[c] + 1);
+			last[c] = i;
+			Max = Math.max(Max, i - start + 1);
+		}
+
+		return Max;
+	}
+
+}
+
+	
+         junit
+
+
+
+		 
+	
+	
+	
+	
+	
+		
+	public int Valueof (String str) {
+		
+		
+		int[] last = new int[128];
+		for (int i = 0; i<128; i++) {
+			last[i] = -1;
+		}
+		
+		int start = 0;
+		int Max = 0;
+		
+		for (int i = 0; i<str.length(); i++) {
+			char c = str.charAt(i);
+			
+			start = Math.max(start, last[c] + 1);
+			last[c] = i;
+			Max = Math.max(Max, i - start + 1);
+		}
+
+		return Max;
+	}
+
+	
+	 
+	 
+	 	
+	@Test 
+	public void valuOf() {
+		String str = "abcabcbb";
+		assertEquals(3, new  StringDemo().Valueof(str));
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

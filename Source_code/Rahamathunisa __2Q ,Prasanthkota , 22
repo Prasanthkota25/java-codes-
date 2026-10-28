@@ -1,0 +1,71 @@
+public class Vowels
+{
+public static void main (String [] args) {
+
+String str = "Java Programming" ;
+int count = 0 ; 
+
+int vCount =0;
+int cCount =0;
+
+str.toLowerCase();
+for (int i =0 ; i<str.length();i++){
+	if (str.charAt(i)!=' '){
+	count ++;
+}
+
+if (str.charAt(i)=='a' || str.charAt (i)=='e' || str.charAt(i)== 'i' || str.charAt(i)=='o' || str.charAt(i)=='u'){
+     vCount++;
+	}
+    else if((str.charAt(i)>'a' && str.charAt(i)<='z') ||(str.charAt(i)>'A' && str.charAt(i)<='Z')) {
+	cCount++;
+	}	
+}
+
+System.out.println("Total num of Vowels:"+ vCount);
+System.out.println("Total num of Consonants:" + cCount);
+}
+}
+
+
+
+
+
+
+                               junit 
+
+
+
+	public int countof(String str) {
+		
+		int vCount =0;
+
+
+		str.toLowerCase();
+		for (int i =0 ; i<str.length();i++){
+			if (str.charAt(i)!=' '){
+			 
+		}
+		if (str.charAt(i)=='a' || str.charAt (i)=='e' || str.charAt(i)== 'i' || str.charAt(i)=='o' || str.charAt(i)=='u'){
+		     vCount++;
+			}
+		 	
+		}
+		return vCount;
+	}
+	
+	
+		
+	@Test
+	public void countof() {
+		assertEquals(5, new StringDemo().countof("Java Programming"));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
