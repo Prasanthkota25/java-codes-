@@ -1,0 +1,13 @@
+package com.example.demo.userRespiratory;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.Userentity.UserEntity;
+import com.example.demo.userentity.userentity;
+
+public interface userrespiratory extends JpaRepository<userentity, Long> {
+
+	userentity findByUsername(String username);
+}

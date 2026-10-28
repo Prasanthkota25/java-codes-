@@ -1,0 +1,8 @@
+package javaCollectionsAll;
+
+public class Stream_Functions {
+
+	public static void main(String[] args) {
+
+	}
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reset Password</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<style>
+		body {
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: #f0f2f5;
+			font-family: Arial, sans-serif;
+		}
+
+		.reset-container {
+			width: 100%;
+			max-width: 400px;
+		}
+
+		.reset-form {
+			background: #fff;
+			padding: 30px;
+			border-radius: 20px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+
+		.reset-form h3 {
+			font-weight: bold;
+		}
+
+		label {
+			margin-top: 10px;
+			font-weight: 600;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="reset-container">
+		<form class="reset-form" action="forgot" method="post">
+			<h3 class="text-center mb-4">Reset Password</h3>
+
+			<label for="username">User Name</label>
+			<input type="text" name="username" class="form-control">
+
+			<label for="newpass">New Password</label>
+			<input type="password" name="newpass" class="form-control">
+
+			<label for="confirmpass">Confirm Password</label>
+			<input type="password" name="confirmpass" class="form-control">
+
+			<button type="submit" class="btn btn-primary w-100 mt-3">
+				Reset Password
+			</button>
+
+			<a href="loginpage" class="btn btn-primary w-100 mt-2">
+				Login
+			</a>
+		</form>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

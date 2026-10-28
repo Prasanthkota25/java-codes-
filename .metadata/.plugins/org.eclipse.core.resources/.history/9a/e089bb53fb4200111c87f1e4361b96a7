@@ -1,0 +1,11 @@
+package javaCollectionsAll;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Stream_api_Example {
+
+	public static void main(String[] args) {
+		List<Integer> nums = new ArrayList<>();
+	}
+}

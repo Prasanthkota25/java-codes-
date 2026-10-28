@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<style>
+		:root {
+			--bg-color: #ffffff;
+			--text-color: #000000;
+			--navbar-color: #f8f9fa;
+		}
+
+		[data-theme="dark"] {
+			--bg-color: #121212;
+			--text-color: #ffffff;
+			--navbar-color: #1f1f1f;
+		}
+
+		body {
+			background-color: var(--bg-color);
+			color: var(--text-color);
+		}
+
+		.navbar {
+			background-color: var(--navbar-color) !important;
+		}
+
+		footer {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			background-color: #222;
+			color: white;
+			text-align: center;
+			padding: 5px 0;
+		}
+
+		.navbar .nav-link {
+			color: var(--text-color) !important;
+		}
+	</style>
+</head>
+
+<body>
+
+
+	<nav class="navbar navbar-expand-lg">
+		<div class="container-fluid">
+
+			<a class="navbar-brand" href="HomePage">Infinite</a>
+
+			<ul class="navbar-nav ms-auto align-items-center">
+
+				<li class="nav-item me-3">
+					<form class="d-flex">
+						<input class="form-control form-control-sm me-2" type="search" placeholder="Search">
+						<button class="btn btn-outline-success btn-sm" type="submit">Search</button>
+					</form>
+				</li>
+
+				<li class="nav-item dropdown me-3">
+					<button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+						Themes
+					</button>
+					<ul class="dropdown-menu">
+						<li><button class="dropdown-item" onclick="setTheme('light')">Light</button></li>
+						<li><button class="dropdown-item" onclick="setTheme('dark')">Dark</button></li>
+					</ul>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+						Account
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li><a class="dropdown-item" href="profilepage">Profile</a></li>
+						<li><a class="dropdown-item" href="loginpage">Logout</a></li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+
+
+	<div class="container mt-5 mb-5">
+		<h3 class="mb-4">Employee Details</h3>
+
+		<form class="row g-3">
+
+			<div class="col-md-4">
+				<label class="form-label">Employee No</label>
+				<input type="text" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Full Name</label>
+				<input type="text" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Office Email ID</label>
+				<input type="email" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">BU</label>
+				<input type="text" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">SBU</label>
+				<input type="text" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">BU Head Name</label>
+				<input type="text" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">SBU Head Name</label>
+				<input type="text" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Reporting Manager</label>
+				<input type="text" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Phone Number</label>
+				<input type="tel" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Extension Number</label>
+				<input type="text" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Physical Location</label>
+				<input type="text" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Designation</label>
+				<input type="text" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Employee Status</label>
+				<select class="form-select">
+					<option>Active</option>
+					<option>Inactive</option>
+				</select>
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Cubical Number</label>
+				<input type="text" class="form-control">
+			</div>
+
+
+
+		</form>
+	</div>
+
+
+	<footer>
+		<div>Infinite Computer</div>
+	</footer>
+
+
+	<script>
+		function setTheme(theme) {
+			document.documentElement.setAttribute("data-theme", theme);
+			localStorage.setItem("theme", theme);
+		}
+
+		window.onload = function () {
+			const saved = localStorage.getItem("theme");
+			if (saved) {
+				document.documentElement.setAttribute("data-theme", saved);
+			}
+		};
+	</script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

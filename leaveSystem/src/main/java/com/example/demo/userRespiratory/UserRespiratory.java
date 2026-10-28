@@ -1,0 +1,16 @@
+package com.example.demo.userRespiratory;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.Userentity.LeaveEntity;
+import com.example.demo.Userentity.UserEntity;
+
+public interface UserRespiratory extends JpaRepository<UserEntity, Long> {
+
+	UserEntity findByUsername(String username);
+
+	// List<LeaveEntity> findByUser_Manager_Id(Long managerId);
+
+}

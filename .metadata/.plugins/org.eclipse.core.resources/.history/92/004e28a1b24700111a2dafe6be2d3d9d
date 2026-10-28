@@ -1,0 +1,46 @@
+package com.example.demo.userService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Userentity.UserEntity;
+import com.example.demo.userRespiratory.UserRespiratory;
+
+@Service
+public class UserService {
+
+	@Autowired
+	private UserRespiratory repo;
+
+	// Registration
+	public UserEntity register(UserEntity user) {
+		return repo.save(user);
+	}
+
+	// Login
+	public UserEntity login(String username, String password) {
+
+		UserEntity user = UserRepository.findByUsername(username)
+				.orElseThrow(() -> new RuntimeException("User not found"));
+
+		if (!passwordEncoder.matches(password, user.getPassword())) {
+			throw new RuntimeException("Invalid password");
+		}
+
+		return user;
+	}
+
+	// Forgot / Reset Password
+	public boolean resetPassword(String username, String newPassword) {
+
+		UserEntity user = repo.findByUsername(username);
+
+		if (user != null) {
+			user.setPassword(newPassword);
+			repo.save(user);
+			return true;
+		}
+
+		return false;
+	}
+}

@@ -1,0 +1,49 @@
+package com.example.demo.userController;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class Usercontroller {
+
+	@GetMapping("/registrationpage")
+	public String registrationpage() {
+		return "registrationpage";
+	}
+
+	@GetMapping("/loginpage")
+	public String loginpage() {
+		return "loginpage";
+	}
+
+	@GetMapping("/forgotpage")
+	public String forgotpage() {
+		return "forgotpage";
+	}
+
+	@GetMapping("/HomePage")
+	public String HomePage() {
+		return "HomePage";
+	}
+
+	@GetMapping("/profilepage")
+	public String profilepage() {
+		return "profilepage";
+	}
+
+	@GetMapping("/ApplyforLeave")
+	public String ApplyforLeave() {
+		return "ApplyforLeave";
+	}
+
+	@GetMapping("/leaveBalance")
+	public String leaveBalance() {
+		return "leaveBalance";
+	}
+
+	@GetMapping("/Myteamleave")
+	public String Myteamleave() {
+		return "Myteamleave";
+	}
+
+}

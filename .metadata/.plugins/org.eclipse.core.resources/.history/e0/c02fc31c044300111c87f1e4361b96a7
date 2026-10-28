@@ -1,0 +1,7 @@
+package javaCollectionsAll;
+
+public class For_Each_MethodExample {
+	public static void main(String[] args) {
+
+	}
+}

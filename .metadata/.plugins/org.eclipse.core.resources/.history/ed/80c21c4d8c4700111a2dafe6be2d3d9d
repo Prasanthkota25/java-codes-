@@ -1,0 +1,46 @@
+package com.example.demo.userService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.userRespiratory.Userrespiratory;
+
+import come.demo.example.userEntity.Userentity;
+
+@Service
+public class Userservice {
+
+	@Autowired
+	private Userrespiratory repo;
+
+	// Registration
+	public Userentity register(Userentity user) {
+		return repo.save(user);
+	}
+
+	// Login
+	public Userentity login(String username, String password) {
+
+		Userentity user = repo.findByUsername(username);
+
+		if (user != null && user.getPassword().equals(password)) {
+			return user;
+		}
+
+		return null;
+	}
+
+	// Forgot / Reset Password
+	public boolean resetPassword(String username, String newPassword) {
+
+		Userentity user = repo.findByUsername(username);
+
+		if (user != null) {
+			user.setPassword(newPassword);
+			repo.save(user);
+			return true;
+		}
+
+		return false;
+	}
+}

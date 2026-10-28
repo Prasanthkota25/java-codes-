@@ -1,0 +1,53 @@
+package javaCollectionsAll;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+class Student {
+	int age;
+	String name;
+
+	public student(int age, String name) {
+		super();
+		this.age = age;
+		this.name = name;
+	}
+
+	public String toString() {
+		return "student [age=" + age + ", name=" + name + "]";
+	}
+
+}
+
+public class comparable {
+	public static void main(String[] args) {
+
+		Comparator<student> c = new Comparator<student>() {
+
+			public int compare(student i, student j) {
+				if (i.age > j.age) {
+					return 1;
+
+				} else {
+					return -1;
+				}
+			}
+		};
+
+		List<student> stud = new ArrayList<>();
+		stud.add(new student(25, "Prasanth"));
+		stud.add(new student(23, "Bhavi"));
+		stud.add(new student(21, "priya"));
+		stud.add(new student(23, "Anil"));
+
+//		System.out.println(stud);
+
+		Collections.sort(stud, c);
+
+		for (student s : stud) {
+			System.out.println(s);
+		}
+	}
+}

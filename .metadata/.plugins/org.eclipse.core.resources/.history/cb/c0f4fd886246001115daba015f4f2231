@@ -1,0 +1,13 @@
+package com.example.demo.userController;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class Usercontroller {
+
+	@GetMapping("/registrationpage")
+	public String registrationpage() {
+		return "registrationpage";
+	}
+}

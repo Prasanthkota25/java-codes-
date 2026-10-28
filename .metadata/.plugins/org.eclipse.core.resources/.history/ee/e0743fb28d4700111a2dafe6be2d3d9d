@@ -1,0 +1,92 @@
+package com.example.demo.userController;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.Userentity.Userentity;
+import com.example.demo.userService.Userservice;
+
+@Controller
+public class Usercontroller {
+
+	@Autowired
+	private Userservice service;
+
+	@GetMapping("/registrationpage")
+	public String registrationpage() {
+		return "registrationpage";
+	}
+
+	@GetMapping("/loginpage")
+	public String loginpage() {
+		return "loginpage";
+	}
+
+	@GetMapping("/forgotpage")
+	public String forgotpage() {
+		return "forgotpage";
+	}
+
+	@GetMapping("/HomePage")
+	public String HomePage() {
+		return "HomePage";
+	}
+
+	@GetMapping("/profilepage")
+	public String profilepage() {
+		return "profilepage";
+	}
+
+	@GetMapping("/ApplyforLeave")
+	public String ApplyforLeave() {
+		return "ApplyforLeave";
+	}
+
+	@GetMapping("/leaveBalance")
+	public String leaveBalance() {
+		return "leaveBalance";
+	}
+
+	@GetMapping("/Myteamleave")
+	public String Myteamleave() {
+		return "Myteamleave";
+	}
+
+	@PostMapping("/register")
+	public String register(@ModelAttribute("userObj") Userentity user) {
+		service.register(user);
+		return loginpage();
+	}
+
+	@PostMapping("/login")
+	public String login(@RequestParam String username, @RequestParam String password, Model model) {
+		Userentity user = service.login(username, password);
+
+		if (user != null) {
+			model.addAttribute("username", user.getUsername());
+			return "welcomepage";
+		}
+
+		model.addAttribute("error", "Invalid username or password");
+		return "loginpage";
+	}
+
+	@PostMapping("/resetpassword")
+	public String resetPassword(@RequestParam String username, @RequestParam String newPassword, Model model) {
+
+		boolean result = service.resetPassword(username, newPassword);
+
+		if (result) {
+			model.addAttribute("msg", "Password updated successfully");
+			return "loginpage";
+		}
+
+		model.addAttribute("msg", "User not found");
+		return "forgotpage";
+	}
+}

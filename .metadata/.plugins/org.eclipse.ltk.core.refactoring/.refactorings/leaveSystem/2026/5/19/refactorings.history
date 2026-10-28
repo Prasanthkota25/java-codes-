@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;leaveSystem&apos;&#x0D;&#x0A;- Original project: &apos;leaveSystem&apos;&#x0D;&#x0A;- Original element: &apos;leaveSystem/src/main/java/come.demo.example.userEntity&apos;" description="Delete element" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;come.demo.example.userEntity" element2="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;come.demo.example" element3="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;come.demo" element4="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;come" elements="4" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1777880134761" subPackages="false" version="1.0"/>
+</session>

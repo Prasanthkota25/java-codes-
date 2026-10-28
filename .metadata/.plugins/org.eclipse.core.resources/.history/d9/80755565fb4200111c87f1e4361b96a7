@@ -1,0 +1,11 @@
+package javaCollectionsAll;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Stream_api_Example {
+
+	public static void main(String[] args) {
+		List<Integer> nums = Arrays.asList(2, 4, 6, 1, 5, 3);
+	}
+}

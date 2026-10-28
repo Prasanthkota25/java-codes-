@@ -1,0 +1,7 @@
+	public int getsalary() {
+		return salary;
+	}
+
+	public void setsalary(int salray) {
+		this.salary = salary;
+	}

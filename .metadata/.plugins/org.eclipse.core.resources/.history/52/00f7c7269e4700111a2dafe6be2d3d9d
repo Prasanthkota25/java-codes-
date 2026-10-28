@@ -1,0 +1,21 @@
+@Entity
+@Data
+public class UserEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    private String firstName;
+    private String lastName;
+
+    @Column(unique = true, nullable = false)   // ✅ FIX
+    private String username;
+
+    private String password;
+
+    @Column(unique = true)                     // ✅ optional but recommended
+    private String email;
+
+    private String phone;
+}

@@ -1,0 +1,25 @@
+package com.example.demo.userService;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Userentity.LeaveEntity;
+import com.example.demo.userRespiratory.LeaveRepository;
+
+@Service
+public class LeaveService {
+
+    @Autowired
+    private LeaveRepository repo;
+
+    public LeaveEntity applyLeave(LeaveEntity leave) {
+        leave.setStatus("Pending");
+        return repo.save(leave);
+    }
+
+    public List<LeaveEntity> getUserLeaves(Long userId) {
+        return repo.findByUserId(userId);
+    }
+}

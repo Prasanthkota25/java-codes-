@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --navbar-color: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --navbar-color: #1f1f1f;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+
+            /* ✅ FIX: proper page height */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: var(--navbar-color) !important;
+        }
+
+        .container {
+            flex: 1; /* ✅ pushes footer down */
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            margin-top: auto; /* ✅ FIX */
+        }
+
+        .navbar .nav-link {
+            color: var(--text-color) !important;
+        }
+
+        .navbar .nav-link.active {
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ✅ NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+
+        <ul class="nav w-100 align-items-center">
+
+            <!-- ✅ FIX: removed .html -->
+            <li class="nav-item">
+                <a class="nav-link active" href="/HomePage">Infinite</a>
+            </li>
+
+            <li class="nav-item ms-auto me-3">
+                <form class="d-flex">
+                    <input class="form-control form-control-sm me-2" type="search" placeholder="Search">
+                    <button class="btn btn-outline-success btn-sm" type="submit">Search</button>
+                </form>
+            </li>
+
+        </ul>
+
+        <!-- Theme -->
+        <div class="dropdown ms-3">
+            <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                Themes
+            </button>
+            <ul class="dropdown-menu">
+                <li><button class="dropdown-item" onclick="setTheme('light')">Light</button></li>
+                <li><button class="dropdown-item" onclick="setTheme('dark')">Dark</button></li>
+            </ul>
+        </div>
+
+        <!-- Account -->
+        <ul class="nav ms-3">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    Account
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+
+                    <!-- ✅ FIX: removed .html -->
+                    <li><a class="dropdown-item" href="/loginpage">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<!-- ✅ MAIN CONTENT -->
+<div class="container mt-5">
+    <h3 class="mb-4">Employee Details</h3>
+
+    <form class="row g-3">
+
+        <div class="col-md-4">
+            <label class="form-label">Employee No</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">BU</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">SBU</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Manager</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Location</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Designation</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Status</label>
+            <!-- ✅ FIX -->
+            <select class="form-select">
+                <option>Active</option>
+                <option>Inactive</option>
+            </select>
+        </div>
+
+    </form>
+</div>
+
+<!-- ✅ FOOTER -->
+<footer>
+    <div>Infinite Computer</div>
+</footer>
+
+<script>
+    function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }
+
+    window.onload = function () {
+        const saved = localStorage.getItem("theme");
+        if (saved) {
+            document.documentElement.setAttribute("data-theme", saved);
+        }
+    };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+[ {
+  "id" : 1,
+  "name" : "KRISHNA",
+  "course" : "sql"
+}, {
+  "id" : 2,
+  "name" : "Ravi",
+  "course" : "Spring Boot"
+}, {
+  "id" : 3,
+  "name" : "Prasanth",
+  "course" : null
+}, {
+  "id" : 4,
+  "name" : "Prasanth",
+  "course" : "Python"
+} ]
