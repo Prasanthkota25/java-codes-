@@ -1,0 +1,25 @@
+package CollesctionsSample;
+
+import java.util.ArrayList;
+
+public class CollesctionsSample {
+
+	public static void main(String[] args) {
+
+		ArrayList al = new ArrayList();
+
+		al.add(25);
+		al.add("prasanth");
+		al.add('k');
+		al.add(0.7);
+		al.add(true);
+
+		System.out.println(al);
+		System.out.println(al.size());
+
+		al.remove(3);
+		System.out.println(al);
+
+	}
+ 
+}

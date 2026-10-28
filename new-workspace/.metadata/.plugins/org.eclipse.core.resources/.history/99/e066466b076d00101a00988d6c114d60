@@ -1,0 +1,19 @@
+package demotraining;
+
+public class demotraining {
+
+
+
+
+public static void main (String[]args ) {
+
+	String n="acbac";
+	String n1="";
+ for (int i =n.length();i<=0;i--) {
+	 if (n1=n.charAt(i));
+	 n1=n1+=n;
+	 
+ }
+	System.out.println( true );
+}
+}

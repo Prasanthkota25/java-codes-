@@ -1,0 +1,16 @@
+
+public class AllDatatypes {
+	public static void main ( String[] args ) {
+		
+		int a = 10 ;
+		short b = 5;
+		long c = 15L;
+		float d = 20f;
+		double e = 30d;
+		char f = 'a';
+		
+		System.out.println(a );
+	}
+	
+
+}

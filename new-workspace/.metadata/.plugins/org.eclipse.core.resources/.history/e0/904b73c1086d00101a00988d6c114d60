@@ -1,0 +1,20 @@
+package demotraining;
+
+import java.util.*;
+public class demotraining {
+
+
+
+
+public static void main (String[]args ) {
+	
+
+
+	List<String> str = new ArrayList<String>(2);
+	str.add("apple");
+	str.add("bannan");
+	str.add("cat")
+	System.out.println(str);
+}
+
+}

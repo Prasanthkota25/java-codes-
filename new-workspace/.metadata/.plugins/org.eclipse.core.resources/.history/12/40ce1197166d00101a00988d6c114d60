@@ -1,0 +1,28 @@
+package demotraining;
+
+import java.util.*;
+public class demotraining {
+
+
+
+
+public static void main (String[]args ) {
+	
+
+
+	List<String> str = new LinkedList<String>();
+	List<String> str2 = new LinkedList<String>(List.of("car","bike"));
+	str.add("apple");
+	str.add("bannan");
+	str.add("cat");
+	str.add(0, "car");
+	str.add("cycle");
+	str.addAll(str2);
+	
+	
+	
+	System.out.println(str2.contains("car"));
+	System.out.println(str);
+}
+
+}

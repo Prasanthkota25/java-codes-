@@ -1,0 +1,24 @@
+package demotraining;
+
+import java.util.*;
+public class demotraining {
+
+
+
+
+public static void main (String[]args ) {
+
+	
+	int str= 2;
+	int str1 ='';
+	int len =str.length();
+	
+	for (int i=len-1;i>=0;i--) {
+		
+		str1=str1+str.;
+	}
+   
+   System.out.println(str.equals(str1));
+   
+}
+}

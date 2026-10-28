@@ -1,0 +1,15 @@
+package demotraining;
+
+public class demotraining {
+
+
+
+
+public static void main (String[]args ) {
+	
+
+
+	list<String> str = new ArrayList<String>("apple","bannan");
+}
+
+}

@@ -1,0 +1,18 @@
+package demotraining;
+
+public class demotraining {
+
+
+
+
+public static String main (String[]args ) {
+
+	String n="acbac";
+	System.out.println( true );
+	for (int i = n.length()-1;i<=0;i--)
+		n +=n+i;
+	{
+ return n;
+}
+}
+}

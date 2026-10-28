@@ -1,0 +1,192 @@
+package org.training.mavenquickstart;
+
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+public class StringDemoTest {
+
+	
+	
+	@Test
+	public void getLengthTest() {
+
+		assertEquals(8, new StringDemo().getLength("prasanth"));
+		assertNotEquals(80, new StringDemo().getLength("prasanth"));
+	}
+
+	@Test
+	public void toUppercase() {
+
+		assertEquals("PRASANTH", new StringDemo().toUppercase("prasanth"));
+	}
+
+	@Test
+	public void toLowercase() {
+
+		assertEquals("prasanth", new StringDemo().toLowercase("PRASANTH"));
+	}
+
+	@Test
+	public void getCharAtTest() {
+
+		assertEquals('a', new StringDemo().getCharAt(4, "prasanth"));
+		assertNotEquals('a', new StringDemo().getCharAt(5, "prasanth"));
+
+	}
+
+	@Test
+	public void getStartsWith() {
+
+		assertTrue(new StringDemo().getStartsWith("prasanth"));
+	}
+
+	@Test
+	public void getEndsWith() {
+
+		assertTrue(new StringDemo().getEndsWith("prasanth"));
+	}
+
+	@Test
+	public void isEmpty() {
+
+		assertFalse(new StringDemo().isEmpty("prasanth"));
+	}
+
+	@Test
+	public void replace() {
+		assertEquals("kota", new StringDemo().replace("prasanth"));
+	}
+
+	@Test
+	public void isreplace() {
+		assertEquals("s", new StringDemo().replace("s"));
+	}
+
+	@Test
+	public void getTrim() {
+
+		assertEquals("prasanthkota", new StringDemo().getTrim("    prasanthkota"));
+	}
+
+	@Test
+	public void toSubstringTest() {
+		assertEquals("nth", new StringDemo().toSubString("prasanth", 5));
+	}
+
+	@Test
+	public void isSubString() {
+
+		assertEquals("santh", new StringDemo().isSubString("prasanth", 3, 8));
+	}
+
+	@Test
+	public void getIndexOf() {
+
+		assertEquals(0, new StringDemo().getIndexOf("prasanth"));
+	}
+
+	@Test
+	public void lastIndexOf() {
+
+		assertEquals(7, new StringDemo().lastIndexOf("prasanth"));
+	}
+
+	@Test
+	public void isEqualTo() {
+
+		assertFalse(new StringDemo().equalTo("prasanth", "kota"));
+	}
+
+
+	
+	
+	@Test 
+	public void arrayof () {
+		char[] array =  {'j','a','n'};
+		assertArrayEquals( array, new StringDemo().arrayof("jan"));
+	}
+
+
+	
+	@Test 
+	public void splitof() {
+		String[] array = {"jan","mar","jun","aug","sep","dec","nov","may","feb","apr","jul"};
+		assertArrayEquals( array, new StringDemo().splitOf("jan,mar,jun,aug,sep,dec,nov,may,feb,apr,jul")); 
+	}
+	
+	
+	
+	@Test 
+	public void reverse() {
+	
+		assertEquals("etinifnI", new StringDemo().reverse("Infinite"));
+	
+	}
+	
+	
+	@Test 
+	public void count() {
+		assertEquals(2,new StringDemo().Count("Infinite"));
+	}
+	
+	
+	
+	
+	
+	@Test
+	public void countOf() {
+		assertEquals(5, new StringDemo().countof("Java Programming"));
+	}
+	
+	
+	
+	
+	
+	@Test 
+	public void valuOf() {
+		String str = "abcabcbb";
+		assertEquals(3, new  StringDemo().Valueof(str));
+	}
+
+	
+	
+	
+	
+	
+	@Test 
+	public void maxNumofTest() {
+		int [] arr= {5,2,9,1,7};
+		assertEquals(9, new StringDemo().maxNum(arr));
+	}
+
+	
+	@Test 
+	public void seriesOfTest() {
+		int[] arr =  { 1, 2, 2, 3, 4, 4, 6, };
+		int[] arr2 =  { 1, 2, 3, 3, 4, 5, 5 };
+		int[] arr3 =  { 1, 2, 2, 3, 4, 4, 4,5,6 };
+		int[] arr4 =  { 1, 2, 2, 3, 6, 4, 5 };
+		int[] arr5 =  { 1, 2, 2, 3, 5, 4, 5 };
+		
+		int [] exp =  {1,2,-1,3,4,-1,6};
+		int [] exp2 = {1, 2, 3, -1, 4, 5, -1};
+		int [] exp3 = {1, 2, -1, 3, 4, -1, -1, 5, 6};
+		int [] exp4 = {1, 2, -1, 3, 6, 4, 5};
+		int [] exp5 = {1, 2, -1, 3, 5, 4, -1};
+		
+		assertArrayEquals(exp, new StringDemo().seriesOf(arr));
+		assertArrayEquals(exp2, new StringDemo().seriesOf(arr2));
+		assertArrayEquals(exp3, new StringDemo().seriesOf(arr3));
+		assertArrayEquals(exp4, new StringDemo().seriesOf(arr4));
+		assertArrayEquals(exp5, new StringDemo().seriesOf(arr5));
+		
+	}
+
+	
+}
