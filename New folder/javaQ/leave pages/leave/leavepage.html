@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Leave Management System</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+        body {
+
+            background-color: #f5f6fa;
+            padding: 25px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .mat-card {
+
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .SubHead {
+
+            font-size: 22px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .spgeBack {
+
+            font-size: 14px;
+            cursor: pointer;
+            color: #555;
+        }
+
+        .spgeBack:hover {
+
+            color: #3f51b5;
+        }
+
+        mat-label {
+
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        .required-marker {
+
+            color: red;
+        }
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            outline: none;
+            border-color: #3f51b5;
+        }
+
+        input[readonly] {
+
+            background-color: #f1f1f1;
+        }
+
+        .calculate-btn {
+
+            background-color: #3f51b5;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .calculate-btn:hover {
+
+            background-color: #303f9f;
+        }
+
+        .reject-button {
+
+            background-color: #757575;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .reject-button:hover {
+
+            background-color: #616161;
+        }
+
+        .login-heading {
+
+            background-color: #ececec;
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 35px;
+            font-weight: 600;
+        }
+
+        table {
+
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        th {
+
+            background-color: #fafafa;
+            padding: 14px;
+            border-bottom: 2px solid #eee;
+            font-size: 14px;
+        }
+
+        td {
+
+            padding: 14px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .cancel-hover:hover {
+
+            color: red;
+            cursor: pointer;
+        }
+
+        #autocompleteList {
+
+            position: absolute;
+            width: 100%;
+            background: white;
+            border: 1px solid #ddd;
+            z-index: 100;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            border-radius: 5px;
+        }
+
+        .search-item {
+
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-item:hover {
+
+            background-color: #f5f5f5;
+        }
+
+        .selected-employees {
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .chip {
+
+            background-color: #e0e0e0;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .chip-remove-btn {
+
+            border: none;
+            background: none;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="mat-card">
+
+    <h4 class="SubHead">
+
+        Apply Leave
+
+        <a href="Homepage.html">
+        <span class="spgeBack"
+              onclick="history.back()">
+
+            <i class="fa-solid fa-angles-left pe-1"></i>
+
+            Back
+        
+        </span>
+        </a>
+
+    </h4>
+
+    <form id="leaveEntryForm">
+
+        <div class="row g-3">
+
+            <!-- Employee -->
+
+            <div class="col-md-3">
+
+                <mat-label>
+
+                    Employee Name
+                    <span class="required-marker">*</span>
+
+                </mat-label>
+
+               <input type="text"
+       id="fullName"
+       readonly>
+
+            </div>
+
+            <!-- Leave Type -->
+
+            <div class="col-md-3">
+
+                <mat-label>
+
+                    Leave Type
+                    <span class="required-marker">*</span>
+
+                </mat-label>
+
+                <select id="leaveType"
+                        onchange="updateLeaveBalance()"
+                        required>
+
+                    <option value="">
+                        Select Leave Type
+                    </option>
+
+                    <option value="Privilege">
+                        Privilege Leave
+                    </option>
+
+                    <option value="Sick">
+                        Sick Leave
+                    </option>
+
+                    <option value="Comp-Off Leave">
+                        Comp-Off Leave
+                    </option>
+
+                    <option value="LOP">
+                        LOP
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Leave Balance -->
+
+            <div class="col-md-3">
+
+                <mat-label>
+                    Leave Balance
+                </mat-label>
+
+                <input type="text"
+                       id="leaveBalance"
+                       value="0"
+                       readonly>
+
+            </div>
+
+            <!-- From Date -->
+
+            <div class="col-md-3">
+
+                <mat-label>
+
+                    From Date
+                    <span class="required-marker">*</span>
+
+                </mat-label>
+
+                <input type="date"
+                       id="startDate"
+                       onchange="calcDays()"
+                       required>
+
+            </div>
+
+            <!-- To Date -->
+
+            <div class="col-md-3">
+
+                <mat-label>
+
+                    To Date
+                    <span class="required-marker">*</span>
+
+                </mat-label>
+
+                <input type="date"
+                       id="endDate"
+                       onchange="calcDays()"
+                       required>
+
+            </div>
+
+            <!-- Session -->
+
+            <div class="col-md-3">
+
+                <mat-label>
+                    Session
+                </mat-label>
+
+                <select id="session"
+                        onchange="calcDays()"
+                        disabled>
+
+                    <option value="full">
+                        Full Day
+                    </option>
+
+                    <option value="firstHalf">
+                        First Half
+                    </option>
+
+                    <option value="secondHalf">
+                        Second Half
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Days -->
+
+            <div class="col-md-3">
+
+                <mat-label>
+                    Days of Leave
+                </mat-label>
+
+                <input type="text"
+                       id="noOfDays"
+                       readonly>
+
+            </div>
+
+            <!-- Approver -->
+
+            <div class="col-md-3">
+
+                <mat-label>
+                    Approver
+                </mat-label>
+
+                <input type="text"
+                       value="Sunil Thampy"
+                       readonly>
+
+            </div>
+
+            <!-- Contact -->
+
+            <div class="col-md-3">
+
+                <mat-label>
+                    Contact Number
+                </mat-label>
+
+                <input type="tel"
+                       id="contactNumber"
+                       maxlength="10"
+                       placeholder="Enter Contact Number"
+                       required>
+
+            </div>
+
+            <!-- CC -->
+
+            <div class="col-md-3"
+                 style="position: relative;">
+
+                <mat-label>
+                    CC To
+                </mat-label>
+
+                <input type="text"
+                       id="ccSearch"
+                       placeholder="Type minimum 3 characters"
+                       onkeyup="searchEmployees(this.value)">
+
+                <div id="autocompleteList"></div>
+
+                <div class="selected-employees"
+                     id="chipContainer"></div>
+
+            </div>
+
+            <!-- Reason -->
+
+            <div class="col-md-3">
+
+                <mat-label>
+                    Reason
+                </mat-label>
+
+                <textarea id="reasonArea"
+                          rows="1"
+                          maxlength="250"
+                          placeholder="Type reason..."
+                          required></textarea>
+
+                <div class="text-end"
+                     id="charCount"
+                     style="font-size:11px;color:#999;">
+
+                    0/250
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="mt-4 text-end">
+
+            <button type="button"
+                    class="reject-button"
+                    onclick="resetForm()">
+
+                <i class="fa-solid fa-rotate-left pe-1"></i>
+
+                Reset
+
+            </button>
+
+            <button type="submit"
+                    class="calculate-btn">
+
+                <i class="fa-solid fa-check pe-1"></i>
+
+                Apply Leave
+
+            </button>
+
+        </div>
+
+    </form>
+
+    <!-- Leave History -->
+
+    <div class="login-heading">
+
+        <i class="fa-solid fa-calendar-days pe-2"></i>
+
+        Leave History
+
+    </div>
+
+    <table class="table">
+
+        <thead>
+
+        <tr>
+
+            <th>Employee</th>
+            <th>Leave Type</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Session</th>
+            <th>Days</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Action</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody id="historyBody"></tbody>
+
+    </table>
+
+</div>
+<!-- 
+<script>
+
+const defaultBalances = {
+    privilege: 10,
+    sick: 5,
+    compOff: 4
+};
+
+let balances = {};
+let currentUser = null;
+let selectedCC = [];
+
+// ======================
+// STORAGE KEYS (USER SAFE)
+// ======================
+function balanceKey(user) {
+    return `leave_balances_${user}`;
+}
+
+function historyKey(user) {
+    return `leave_history_${user}`;
+}
+
+// ======================
+// LOAD USER (FIX REFRESH ISSUE)
+// ======================
+async function loadUser() {
+
+    const username = localStorage.getItem("username");
+
+    if (!username) {
+        alert("Login required");
+        window.location.href = "loginpage.html";
+        return;
+    }
+
+    const res = await fetch(`http://localhost:2121/users/username/${username}`);
+    const user = await res.json();
+
+    currentUser = user;
+
+    document.getElementById("fullName").value =
+        (user.firstname || "") + " " + (user.lastname || "");
+
+    loadBalances();
+    renderHistory();
+}
+
+// ======================
+// BALANCES (PER USER FIX)
+// ======================
+function loadBalances() {
+
+    const key = balanceKey(currentUser.username);
+
+    const stored = localStorage.getItem(key);
+
+    balances = stored
+        ? JSON.parse(stored)
+        : structuredClone(defaultBalances);
+
+    saveBalances();
+    updateLeaveBalance();
+}
+
+function saveBalances() {
+    localStorage.setItem(
+        balanceKey(currentUser.username),
+        JSON.stringify(balances)
+    );
+}
+
+// ======================
+// HISTORY (PER USER FIX)
+// ======================
+function loadHistory() {
+    return JSON.parse(
+        localStorage.getItem(historyKey(currentUser.username))
+    ) || [];
+}
+
+function saveHistory(data) {
+    localStorage.setItem(
+        historyKey(currentUser.username),
+        JSON.stringify(data)
+    );
+}
+
+// ======================
+// LEAVE BALANCE UI
+// ======================
+function updateLeaveBalance() {
+
+    const type = document.getElementById("leaveType").value;
+    const out = document.getElementById("leaveBalance");
+
+    if (type === "Privilege") out.value = balances.privilege;
+    else if (type === "Sick") out.value = balances.sick;
+    else if (type === "Comp-Off Leave") out.value = balances.compOff;
+    else if (type === "LOP") out.value = "Unlimited";
+    else out.value = "0";
+}
+
+// ======================
+// CALCULATE DAYS (FIXED)
+// ======================
+function calcDays() {
+
+    const s = document.getElementById("startDate").value;
+    const e = document.getElementById("endDate").value;
+    const session = document.getElementById("session");
+    const out = document.getElementById("noOfDays");
+
+    if (!s || !e) return;
+
+    let start = new Date(s);
+    let end = new Date(e);
+
+    if (start > end) {
+        alert("Invalid dates");
+        return;
+    }
+
+    let days = 0;
+    let cur = new Date(start);
+
+    while (cur <= end) {
+        const d = cur.getDay();
+        if (d !== 0 && d !== 6) days++;
+        cur.setDate(cur.getDate() + 1);
+    }
+
+    if (days === 1) {
+        session.disabled = false;
+
+        if (session.value === "firstHalf" ||
+            session.value === "secondHalf") {
+            days = 0.5;
+        }
+    } else {
+        session.disabled = true;
+        session.value = "full";
+    }
+
+    out.value = days;
+}
+
+// ======================
+// RESET (FIXED)
+// ======================
+function resetForm() {
+
+    document.getElementById("leaveEntryForm").reset();
+
+    selectedCC = [];
+    document.getElementById("chipContainer").innerHTML = "";
+    document.getElementById("charCount").innerText = "0/250";
+
+    document.getElementById("noOfDays").value = "";
+    document.getElementById("leaveBalance").value = "0";
+    document.getElementById("session").disabled = true;
+
+    updateLeaveBalance(); // DO NOT reload user again
+}
+
+// ======================
+// APPLY LEAVE (FULL FIX)
+// ======================
+document.getElementById("leaveEntryForm").onsubmit = function (e) {
+
+    e.preventDefault();
+
+    if (!currentUser) return alert("User not loaded");
+
+    const leaveType = document.getElementById("leaveType").value;
+    const fromDate = document.getElementById("startDate").value;
+    const toDate = document.getElementById("endDate").value;
+    const session = document.getElementById("session").value;
+    const noOfDays = parseFloat(document.getElementById("noOfDays").value);
+    const reason = document.getElementById("reasonArea").value.trim();
+
+    if (!leaveType || !fromDate || !toDate || !reason)
+        return alert("Fill all fields");
+
+    if (leaveType === "Privilege" && noOfDays > balances.privilege)
+        return alert("No Privilege balance");
+
+    if (leaveType === "Sick" && noOfDays > balances.sick)
+        return alert("No Sick balance");
+
+    if (leaveType === "Comp-Off Leave" && noOfDays > balances.compOff)
+        return alert("No CompOff balance");
+
+    // deduct
+    if (leaveType === "Privilege") balances.privilege -= noOfDays;
+    if (leaveType === "Sick") balances.sick -= noOfDays;
+    if (leaveType === "Comp-Off Leave") balances.compOff -= noOfDays;
+
+    saveBalances();
+
+    const leave = {
+        employeeName: document.getElementById("fullName").value,
+        username: currentUser.username,
+        leaveType,
+        fromDate,
+        toDate,
+        sessionDisplay: session,
+        noOfDays,
+        reason,
+        status: "Pending"
+    };
+
+    const history = loadHistory();
+    history.unshift(leave);
+
+    saveHistory(history);
+
+    renderHistory();
+
+    alert("Leave Applied Successfully!");
+    resetForm();
+};
+
+// ======================
+// RENDER HISTORY (USER ONLY)
+// ======================
+function renderHistory() {
+
+    const table = document.getElementById("historyBody");
+    table.innerHTML = "";
+
+    const data = loadHistory();
+
+    data.forEach((item, i) => {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${item.employeeName}</td>
+            <td>${item.leaveType}</td>
+            <td>${item.fromDate}</td>
+            <td>${item.toDate}</td>
+            <td>${item.sessionDisplay}</td>
+            <td>${item.noOfDays}</td>
+            <td>${item.reason}</td>
+            <td>${item.status}</td>
+            <td>
+                <i class="fa-solid fa-trash" onclick="deleteRow(${i})"></i>
+            </td>
+        `;
+
+        table.appendChild(row);
+    });
+}
+
+// ======================
+// DELETE (USER SAFE)
+// ======================
+function deleteRow(index) {
+
+    let data = loadHistory();
+    const item = data[index];
+
+    if (item.leaveType === "Privilege") balances.privilege += item.noOfDays;
+    if (item.leaveType === "Sick") balances.sick += item.noOfDays;
+    if (item.leaveType === "Comp-Off Leave") balances.compOff += item.noOfDays;
+
+    saveBalances();
+
+    data.splice(index, 1);
+    saveHistory(data);
+
+    renderHistory();
+    updateLeaveBalance();
+
+    alert("Deleted");
+}
+
+// ======================
+// INIT (FIX REFRESH USER ISSUE)
+// ======================
+window.onload = async function () {
+    await loadUser();
+};
+
+</script>
+ -->
+
+
+
+ <script>
+
+const defaultBalances = {
+    privilege: 10,
+    sick: 5,
+    compOff: 4
+};
+
+let balances = {};
+let currentUser = null;
+let selectedCC = [];
+
+/* ======================
+   STORAGE KEYS
+====================== */
+function balanceKey(user) {
+    return `leave_balances_${user}`;
+}
+
+function historyKey(user) {
+    return `leave_history_${user}`;
+}
+
+/* ======================
+   LOAD USER (REFRESH SAFE)
+====================== */
+async function loadUser() {
+
+    const username = localStorage.getItem("username");
+
+    if (!username) {
+        alert("Login required");
+        window.location.href = "loginpage.html";
+        return;
+    }
+
+    const res = await fetch(`http://localhost:2121/users/username/${username}`);
+    const user = await res.json();
+
+    currentUser = user;
+
+    document.getElementById("fullName").value =
+        (user.firstname || "") + " " + (user.lastname || "");
+
+    loadBalances();
+    renderHistory();
+}
+
+/* ======================
+   BALANCES PER USER
+====================== */
+function loadBalances() {
+
+    const key = balanceKey(currentUser.username);
+
+    const stored = localStorage.getItem(key);
+
+    balances = stored
+        ? JSON.parse(stored)
+        : structuredClone(defaultBalances);
+
+    saveBalances();
+    updateLeaveBalance();
+}
+
+function saveBalances() {
+    localStorage.setItem(
+        balanceKey(currentUser.username),
+        JSON.stringify(balances)
+    );
+}
+
+/* ======================
+   HISTORY PER USER
+====================== */
+function loadHistory() {
+    return JSON.parse(
+        localStorage.getItem(historyKey(currentUser.username))
+    ) || [];
+}
+
+function saveHistory(data) {
+    localStorage.setItem(
+        historyKey(currentUser.username),
+        JSON.stringify(data)
+    );
+}
+
+/* ======================
+   LEAVE BALANCE DISPLAY
+====================== */
+function updateLeaveBalance() {
+
+    const type = document.getElementById("leaveType").value;
+    const out = document.getElementById("leaveBalance");
+
+    if (type === "Privilege") out.value = balances.privilege;
+    else if (type === "Sick") out.value = balances.sick;
+    else if (type === "Comp-Off Leave") out.value = balances.compOff;
+    else if (type === "LOP") out.value = "Unlimited";
+    else out.value = "0";
+}
+
+/* ======================
+   CALCULATE DAYS (FIXED)
+====================== */
+function calcDays() {
+
+    const s = document.getElementById("startDate").value;
+    const e = document.getElementById("endDate").value;
+    const session = document.getElementById("session");
+    const out = document.getElementById("noOfDays");
+
+    if (!s || !e) return;
+
+    let start = new Date(s);
+    let end = new Date(e);
+
+    if (start > end) {
+        alert("Invalid date range");
+        return;
+    }
+
+    let days = 0;
+    let cur = new Date(start);
+
+    while (cur <= end) {
+        let d = cur.getDay();
+        if (d !== 0 && d !== 6) days++;
+        cur.setDate(cur.getDate() + 1);
+    }
+
+    if (days === 1) {
+        session.disabled = false;
+
+        if (session.value === "firstHalf" ||
+            session.value === "secondHalf") {
+            days = 0.5;
+        }
+    } else {
+        session.disabled = true;
+        session.value = "full";
+    }
+
+    out.value = days;
+}
+
+/* ======================
+   RESET (FIXED USER ISSUE)
+====================== */
+function resetForm() {
+
+    document.getElementById("leaveEntryForm").reset();
+
+    selectedCC = [];
+    document.getElementById("chipContainer").innerHTML = "";
+    document.getElementById("charCount").innerText = "0/250";
+
+    document.getElementById("noOfDays").value = "";
+    document.getElementById("leaveBalance").value = "0";
+    document.getElementById("session").disabled = true;
+
+    // 🔥 IMPORTANT FIX: restore correct logged-in user
+    if (currentUser) {
+        document.getElementById("fullName").value =
+            (currentUser.firstname || "") + " " + (currentUser.lastname || "");
+    }
+
+    updateLeaveBalance();
+}
+
+/* ======================
+   APPLY LEAVE (FIXED)
+====================== */
+document.getElementById("leaveEntryForm").onsubmit = function (e) {
+
+    e.preventDefault();
+
+    if (!currentUser) return alert("User not loaded");
+
+    const leaveType = document.getElementById("leaveType").value;
+    const fromDate = document.getElementById("startDate").value;
+    const toDate = document.getElementById("endDate").value;
+    const session = document.getElementById("session").value;
+    const noOfDays = parseFloat(document.getElementById("noOfDays").value);
+    const reason = document.getElementById("reasonArea").value.trim();
+
+    if (!leaveType || !fromDate || !toDate || !reason)
+        return alert("Fill all fields");
+
+    if (leaveType === "Privilege" && noOfDays > balances.privilege)
+        return alert("No Privilege balance");
+
+    if (leaveType === "Sick" && noOfDays > balances.sick)
+        return alert("No Sick balance");
+
+    if (leaveType === "Comp-Off Leave" && noOfDays > balances.compOff)
+        return alert("No CompOff balance");
+
+    // deduct balance
+    if (leaveType === "Privilege") balances.privilege -= noOfDays;
+    if (leaveType === "Sick") balances.sick -= noOfDays;
+    if (leaveType === "Comp-Off Leave") balances.compOff -= noOfDays;
+
+    saveBalances();
+
+    const leave = {
+        employeeName: document.getElementById("fullName").value,
+        username: currentUser.username,
+        leaveType,
+        fromDate,
+        toDate,
+        sessionDisplay: session,
+        noOfDays,
+        reason,
+        status: "Pending"
+    };
+
+    const history = loadHistory();
+    history.unshift(leave);
+
+    saveHistory(history);
+
+    renderHistory();
+
+    alert("Leave Applied Successfully!");
+    resetForm();
+};
+
+/* ======================
+   RENDER HISTORY (USER ONLY)
+====================== */
+function renderHistory() {
+
+    const table = document.getElementById("historyBody");
+    table.innerHTML = "";
+
+    const data = loadHistory();
+
+    data.forEach((item, i) => {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${item.employeeName}</td>
+            <td>${item.leaveType}</td>
+            <td>${item.fromDate}</td>
+            <td>${item.toDate}</td>
+            <td>${item.sessionDisplay}</td>
+            <td>${item.noOfDays}</td>
+            <td>${item.reason}</td>
+            <td>${item.status}</td>
+            <td>
+                <i class="fa-solid fa-trash" onclick="deleteRow(${i})"></i>
+            </td>
+        `;
+
+        table.appendChild(row);
+    });
+}
+
+/* ======================
+   DELETE (FIXED PER USER)
+====================== */
+function deleteRow(index) {
+
+    let data = loadHistory();
+    const item = data[index];
+
+    if (item.leaveType === "Privilege") balances.privilege += item.noOfDays;
+    if (item.leaveType === "Sick") balances.sick += item.noOfDays;
+    if (item.leaveType === "Comp-Off Leave") balances.compOff += item.noOfDays;
+
+    saveBalances();
+
+    data.splice(index, 1);
+    saveHistory(data);
+
+    renderHistory();
+    updateLeaveBalance();
+
+    alert("Deleted Successfully");
+}
+
+/* ======================
+   INIT (REFRESH SAFE)
+====================== */
+window.onload = async function () {
+    await loadUser();
+};
+
+</script>
+</body>
+
+</html>

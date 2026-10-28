@@ -1,0 +1,261 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Booking UI</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: #0a2540;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* HERO */
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('https://source.unsplash.com/1600x900/?travel,airplane') center/cover;
+    color: white;
+    text-align: center;
+    padding-top: 120px;
+}
+
+.hero h1 {
+    font-size: 50px;
+}
+
+.hero p {
+    margin: 10px 0 30px;
+}
+
+/* BOOKING BOX */
+.booking {
+    background: white;
+    width: 80%;
+    margin: auto;
+    margin-top: -80px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* TABS */
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-bottom: 3px solid transparent;
+    font-weight: bold;
+}
+
+.tab.active {
+    border-color: #ff6600;
+    color: #ff6600;
+}
+
+/* FORM */
+.form {
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.form.active {
+    display: grid;
+}
+
+input, select, button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #ff6600;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* DESTINATIONS */
+.destinations {
+    padding: 50px;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 280px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card img {
+    width: 100%;
+}
+
+.card h3 {
+    padding: 10px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #0a2540;
+    color: white;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+    .booking {
+        width: 95%;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+    <h2>TravelX</h2>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Trips</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <h1>Book Your Journey</h1>
+    <p>Flights • Trains • Buses</p>
+</div>
+
+<div class="booking">
+
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('flight')">✈ Flights</div>
+        <div class="tab" onclick="showTab('train')">🚆 Trains</div>
+        <div class="tab" onclick="showTab('bus')">🚌 Buses</div>
+    </div>
+
+    <!-- FLIGHT -->
+    <div class="form active" id="flight">
+        <input type="text" placeholder="From">
+        <input type="text" placeholder="To">
+        <input type="date">
+        <input type="date">
+        <button>Search Flights</button>
+    </div>
+
+    <!-- TRAIN -->
+    <div class="form" id="train">
+        <input type="text" placeholder="From">
+        <input type="text" placeholder="To">
+        <input type="date">
+        <select>
+            <option>Class</option>
+            <option>Sleeper</option>
+            <option>AC</option>
+        </select>
+        <button>Search Trains</button>
+    </div>
+
+    <!-- BUS -->
+    <div class="form" id="bus">
+        <input type="text" placeholder="From">
+        <input type="text" placeholder="To">
+        <input type="date">
+        <select>
+            <option>Type</option>
+            <option>AC</option>
+            <option>Non-AC</option>
+        </select>
+        <button>Search Buses</button>
+    </div>
+
+</div>
+
+<section class="destinations">
+    <h2>Popular Destinations</h2>
+    <div class="cards">
+        <div class="card">
+            <img src="https://source.unsplash.com/300x200/?beach">
+            <h3>Goa</h3>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/300x200/?mountains">
+            <h3>Manali</h3>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/300x200/?city">
+            <h3>Dubai</h3>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 TravelX</p>
+</footer>
+
+<script>
+function showTab(type) {
+    document.querySelectorAll('.form').forEach(f => f.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+    document.getElementById(type).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
+```

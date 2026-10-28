@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Employee Profile</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card {
+    width: 95%;
+    height: 90vh;
+    display: flex;
+    background: #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.left-section {
+    width: 25%;
+    border-right: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-icon {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    color: white;
+}
+
+.emp-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.right-section {
+    width: 75%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: white;
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.field {
+    flex: 1;
+}
+
+.field label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.field input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #eee;
+}
+</style>
+</head>
+
+<body>
+
+<div class="profile-card">
+
+    <!-- LEFT -->
+    <div class="left-section">
+        <div class="profile-icon">👤</div>
+        <div class="emp-name">Loading...</div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right-section">
+
+        <div class="row">
+            <div class="field">
+                <label>Employee Number</label>
+                <input id="empId" type="text" readonly>
+            </div>
+
+            <div class="field">
+                <label>Full Name</label>
+                <input id="fullName" type="text" readonly>
+            </div>
+
+            <div class="field">
+                <label>Office Email</label>
+                <input id="email" type="text" readonly>
+            </div>
+
+            <div class="field">
+                <label>Username</label>
+                <input id="username" type="text" readonly>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="field">
+                <label>Phone</label>
+                <input id="phone" type="text" readonly>
+            </div>
+
+            <div class="field">
+                <label>BU</label>
+                <input type="text">
+            </div>
+
+            <div class="field">
+                <label>SBU</label>
+                <input type="text">
+            </div>
+
+            <div class="field">
+                <label>Designation</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="field">
+                <label>Location</label>
+                <input type="text">
+            </div>
+
+            <div class="field">
+                <label>Reporting Manager</label>
+                <input type="text">
+            </div>
+
+            <div class="field"></div>
+            <div class="field"></div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+window.addEventListener("DOMContentLoaded", async () => {
+
+    // get logged-in user
+    const username = localStorage.getItem("username");
+
+    if (!username) {
+        alert("Please login first");
+        window.location.href = "loginpage.html";
+        return;
+    }
+
+    try {
+        const res = await fetch(`http://localhost:2121/users/username/${username}`);
+        
+        if (!res.ok) {
+            alert("User not found");
+            return;
+        }
+
+        const user = await res.json();
+
+        // LEFT SIDE NAME
+        document.querySelector(".emp-name").innerText =
+            user.firstname + " " + user.lastname;
+
+        // FILL FIELDS
+        document.getElementById("empId").value = user.id;
+        document.getElementById("fullName").value = user.firstname + " " + user.lastname;
+        document.getElementById("email").value = user.email;
+        document.getElementById("username").value = user.username;
+        document.getElementById("phone").value = user.phone;
+
+    } catch (err) {
+        console.error(err);
+        alert("Error loading profile");
+    }
+});
+</script>
+
+</body>
+</html>

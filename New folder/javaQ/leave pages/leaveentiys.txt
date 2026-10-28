@@ -1,0 +1,237 @@
+You’ve got a good base already, but right now everything is tied only to `UserEntity`. To support **leave management (Apply Leave, Leave Balance, My Team Leave)** and also show **profile data from registration**, you need to structure your database properly with **separate tables + relationships**.
+
+Let’s break this into two clear parts.
+
+---
+
+# ✅ 1. Create Separate Tables for Leave Features
+
+You should NOT store leave data inside `UserEntity`. Instead, create a new entity like:
+
+## 🔹 LeaveEntity (New Table)
+
+```java
+package com.example.demo.leaveEntity;
+
+import java.time.LocalDate;
+import jakarta.persistence.*;
+
+@Entity
+public class LeaveEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private LocalDate fromDate;
+    private LocalDate toDate;
+    private String reason;
+    private String status; // Pending, Approved, Rejected
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    // getters and setters
+}
+```
+
+👉 This creates a **separate table** like:
+
+```
+leave_entity
+------------
+id
+from_date
+to_date
+reason
+status
+user_id (FK)
+```
+
+---
+
+## 🔹 Leave Repository
+
+```java
+package com.example.demo.leaveRepository;
+
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.demo.leaveEntity.LeaveEntity;
+
+public interface LeaveRepository extends JpaRepository<LeaveEntity, Long> {
+
+    List<LeaveEntity> findByUserId(Long userId);
+}
+```
+
+---
+
+## 🔹 Leave Service
+
+```java
+@Service
+public class LeaveService {
+
+    @Autowired
+    private LeaveRepository repo;
+
+    public LeaveEntity applyLeave(LeaveEntity leave) {
+        leave.setStatus("Pending");
+        return repo.save(leave);
+    }
+
+    public List<LeaveEntity> getUserLeaves(Long userId) {
+        return repo.findByUserId(userId);
+    }
+}
+```
+
+---
+
+## 🔹 Controller Example
+
+```java
+@PostMapping("/applyLeave")
+public String applyLeave(@ModelAttribute LeaveEntity leave, @RequestParam Long userId) {
+
+    UserEntity user = service.findById(userId); // you need this method
+    leave.setUser(user);
+
+    leaveService.applyLeave(leave);
+    return "redirect:/leaveBalance";
+}
+```
+
+---
+
+# ✅ 2. Leave Balance Table (Optional but Recommended)
+
+You can create another table:
+
+## 🔹 LeaveBalanceEntity
+
+```java
+@Entity
+public class LeaveBalance {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private int totalLeave;
+    private int usedLeave;
+    private int remainingLeave;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+}
+```
+
+---
+
+# ✅ 3. My Team Leave
+
+For this, you need a **team/manager relationship**.
+
+Add in `UserEntity`:
+
+```java
+@ManyToOne
+@JoinColumn(name = "manager_id")
+private UserEntity manager;
+```
+
+Then fetch:
+
+```java
+List<LeaveEntity> findByUser_Manager_Id(Long managerId);
+```
+
+---
+
+# ✅ 4. Show Registration Data in Profile Page
+
+Right now your profile page is static. You need to pass user data.
+
+## 🔹 Update Controller
+
+```java
+@GetMapping("/profilepage")
+public String profilepage(Model model, @RequestParam String username) {
+
+    UserEntity user = service.findByUsername(username);
+    model.addAttribute("user", user);
+
+    return "profilepage";
+}
+```
+
+---
+
+## 🔹 In HTML (Thymeleaf)
+
+```html
+<p>First Name: <span th:text="${user.firstname}"></span></p>
+<p>Last Name: <span th:text="${user.lastname}"></span></p>
+<p>Email: <span th:text="${user.email}"></span></p>
+<p>Phone: <span th:text="${user.phone}"></span></p>
+```
+
+---
+
+# ⚠️ Important Issues in Your Current Code
+
+### ❌ Duplicate Service Class
+
+You pasted `UserService` twice → remove one.
+
+---
+
+### ❌ Password Security (Very Important)
+
+You are storing plain text passwords:
+
+```java
+user.getPassword().equals(password)
+```
+
+👉 This is unsafe. Use BCrypt:
+
+```java
+@Autowired
+private PasswordEncoder encoder;
+
+user.setPassword(encoder.encode(password));
+```
+
+---
+
+# ✅ Final Structure
+
+You will have:
+
+### Tables:
+
+* `user_entity`
+* `leave_entity`
+* `leave_balance` (optional)
+
+---
+
+# 💡 Summary
+
+* Create **separate entity for Leave**
+* Use **@ManyToOne (User → Leaves)**
+* Create **LeaveBalance table**
+* Fetch user data to show profile page
+* Fix duplicate service + password security
+
+---
+
+If you want, I can next:
+✅ Design full database schema
+✅ Give Thymeleaf pages for Apply Leave / Balance
+✅ Add login session handling (so no need to pass username manually)

@@ -1,0 +1,92 @@
+// Method overloading ...
+           AND 
+// Method overriding ...
+
+
+//method Overloading (complie-time Error ) .
+
+>> complietime Error 
+>> same class 
+>> parameters must be different 
+>> return type can be vary 
+>> inheritance is not needed 
+
+Ex ....
+
+class printer {
+
+ void int print (int num ){
+return num;
+}
+
+ void String print (String  text ){
+return text ;
+}
+
+void double  print (double num){
+return num;
+}
+
+
+	public static void main(String[] args) {
+		printer myprint = new printer();
+		System.out.println(myprint.print(25));
+		System.out.println(myprint.print("prasanth kota"));
+		System.out.println(myprint.print(2525));
+
+	}
+	}
+
+
+
+// method overriding (run-time Error).
+
+
+>> Runtime 
+>> parent + child 
+>> parameters must be same 
+>> return type must be compatible 
+>>  inheritance it is needed 
+
+Ex ...
+
+class animal {
+
+		void Sound() {
+			System.out.println("animal is shouting ");
+		}
+	}
+
+	static class Dog extends animal {
+		@Override
+		void Sound() {
+			System.out.print("Dog is barking ");
+		}
+	}
+
+	public static void main(String[] args) {
+
+		Dog myanimal = new Dog();
+		myanimal.Sound();
+
+	}
+
+
+
+
+
+
+
+
+
+Can you override a static method?
+No.
+Static methods belong to the class, not the object. They are hidden, not overridden.
+
+
+
+
+
+
+
+

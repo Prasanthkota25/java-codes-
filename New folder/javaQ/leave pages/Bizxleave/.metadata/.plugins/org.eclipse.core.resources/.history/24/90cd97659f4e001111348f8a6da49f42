@@ -1,0 +1,83 @@
+package com.example.bizx.UserController;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.bizx.UserEntity.LoginEntity;
+import com.example.bizx.UserRepository.LoginRepository;
+
+@CrossOrigin(origins = "*")
+@RestController
+public class LoginController {
+
+	@Autowired
+	LoginRepository repo;
+
+	// GET ALL USERS
+	@GetMapping("/users")
+	public List<LoginEntity> getAllUsers() {
+		return repo.findAll();
+	}
+
+	// GET USER BY USERNAME
+	@GetMapping("/users/{username}")
+	public LoginEntity getUserByUsername(@PathVariable String username) {
+		return repo.findByUsername(username);
+	}
+
+	// REGISTER
+	@PostMapping("/register")
+	public String registerUser(@RequestBody LoginEntity user) {
+
+		LoginEntity existingUser = repo.findByUsername(user.getUsername());
+
+		if (existingUser != null) {
+			return "Username already exists";
+		}
+
+		repo.save(user);
+		return "Registration Successful";
+	}
+
+	// LOGIN
+	@PostMapping("/login")
+	public String loginUser(@RequestBody LoginEntity loginData) {
+
+		LoginEntity user = repo.findByUsername(loginData.getUsername());
+
+		if (user == null) {
+			return "User Not Found";
+		}
+
+		if (user.getPassword().equals(loginData.getPassword())) {
+			return "Login Successful";
+		}
+
+		return "Invalid Password";
+	}
+
+	// RESET PASSWORD
+	@PutMapping("/resetpassword")
+	public String resetPassword(@RequestBody LoginEntity data) {
+
+		LoginEntity user = repo.findByUsername(data.getUsername());
+
+		if (user == null) {
+			return "User Not Found";
+		}
+
+		user.setPassword(data.getPassword());
+
+		repo.save(user);
+
+		return "Password Reset Successful";
+	}
+}}

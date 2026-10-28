@@ -1,0 +1,23 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000;
+  --navbar-color: #f8f9fa;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #fff;
+  --navbar-color: #1f1f1f;
+}
+
+.navbar {
+  background-color: var(--navbar-color) !important;
+}
+
+.navbar .nav-link {
+  color: var(--text-color) !important;
+}
+
+.navbar .nav-link.active {
+  font-weight: 600;
+}

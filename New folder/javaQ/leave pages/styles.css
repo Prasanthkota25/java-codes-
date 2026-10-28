@@ -1,0 +1,51 @@
+/* THEME */
+:root {
+  --bg-color: #f4f6f9;
+  --text-color: #000;
+  --card-bg: #ffffff;
+  --navbar-color: #ffffff;
+  --footer-bg: #222;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #fff;
+  --card-bg: #1e1e1e;
+  --navbar-color: #1f1f1f;
+  --footer-bg: #000;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding-bottom: 60px;
+}
+
+/* NAVBAR */
+.navbar {
+  background: var(--navbar-color) !important;
+}
+
+.nav-link {
+  color: var(--text-color) !important;
+}
+
+/* CONTAINER */
+.container {
+  background: var(--card-bg);
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: var(--footer-bg);
+  color: white;
+  text-align: center;
+  padding: 8px;
+}

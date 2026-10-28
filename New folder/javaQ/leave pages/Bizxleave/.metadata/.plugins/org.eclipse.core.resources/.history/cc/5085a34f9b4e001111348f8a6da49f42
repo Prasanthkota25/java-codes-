@@ -1,0 +1,4 @@
+spring.application.name=bizx
+
+
+server.port=2121

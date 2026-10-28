@@ -1,0 +1,49 @@
+ // This And Super Keywords 
+ 
+ This :> this keyword can be used  current class  object 
+ Super :> this keyword can be used parent class object 
+
+
+
+This : >  used to refer to the current  object's  variables or methods . 
+
+Ex ....
+
+class student {
+String name ;
+
+student (String name ){
+this.name = name ;
+}
+}
+public static void main(String [] args ){
+
+student s = new student("prasanth kota");
+System.out.println(s.name);
+
+
+
+
+Super  : >  used to access the  parent class  methods and variables and also constructors . 
+
+
+ Ex .... 
+ 
+  class Animal {
+  void sound (){
+  System.out.println("Animal is shouting " );
+  }
+  }
+  
+static class Dog extends Animal {
+ 
+ void sound() {
+ super.sound();
+ System.out.println(" Dog is barking " );
+ }
+ }
+ public static void main (String [] args ){
+ Dog mydog = new Dog();
+ mydog.sound();
+ }
+ 

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Dashboard</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f5f9;
+    }
+
+    .main-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    .dashboard {
+      width: 1100px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .left-panel {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card-box {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .profile-box {
+      text-align: center;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background: #f5f7fb;
+    }
+
+    .center-panel {
+      flex: 1;
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .leave-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 10px;
+    }
+
+    /* RIGHT PANEL FIX */
+    .right-panel {
+      width: 300px;
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+      display: none; /* IMPORTANT: hidden on load */
+    }
+
+    .option-link {
+      display: block;
+      text-decoration: none;
+      background: #f5f7fb;
+      padding: 14px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      color: #222;
+      font-weight: 500;
+    }
+
+    .option-link:hover {
+      background: #0d6efd;
+      color: white;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="main-container">
+
+  <div class="dashboard">
+
+    <!-- LEFT -->
+    <div class="left-panel">
+
+      <div class="card-box profile-box">
+        <h4>HR Manager</h4>
+        <p>Priya Sharma</p>
+      </div>
+
+      <div class="card-box">
+        <h5>Popular Links</h5>
+
+        <div class="link-item"><i class="bi bi-calendar-event"></i> Holiday List</div>
+        <div class="link-item"><i class="bi bi-diagram-3"></i> Rootz</div>
+        <div class="link-item"><i class="bi bi-people"></i> Employee Directory</div>
+        <div class="link-item"><i class="bi bi-file-earmark-text"></i> HR Policies</div>
+
+      </div>
+
+    </div>
+
+    <!-- CENTER -->
+    <div class="center-panel">
+
+      <h2>Employee Dashboard</h2>
+
+      <button class="btn btn-outline-primary leave-btn"
+        onclick="toggleRightPanel()">
+
+        <i class="bi bi-calendar-check"></i>
+        Leave
+
+      </button>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div id="rightPanel" class="right-panel">
+
+      <h4>Leave Options</h4>
+
+      <a class="option-link" href="leavepage.html">Apply Leave</a>
+      <a class="option-link" href="leavebalance.html">Leave Balance</a>
+      <a class="option-link" href="myteamleave.html">My Team Leave</a>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+function toggleRightPanel() {
+
+  const panel = document.getElementById("rightPanel");
+
+  if (panel.style.display === "block") {
+    panel.style.display = "none";
+  } else {
+    panel.style.display = "block";
+  }
+
+}
+
+</script>
+
+</body>
+</html>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Dashboard</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f3f5f9;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      padding:30px;
+    }
+
+    /* DASHBOARD */
+    .dashboard{
+      width:1100px;
+      display:flex;
+      gap:20px;
+    }
+
+    /* LEFT SIDE */
+    .left-panel{
+      width:300px;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    /* COMMON CARD */
+    .card-box{
+      background:#fff;
+      border-radius:15px;
+      padding:20px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    /* PROFILE */
+    .profile-box{
+      text-align:center;
+    }
+
+    .profile-box img{
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      object-fit:cover;
+      margin-bottom:10px;
+    }
+
+    .profile-box h4{
+      margin:0;
+      color:#333;
+    }
+
+    .profile-box p{
+      color:gray;
+      margin-top:5px;
+    }
+
+    /* POPULAR LINKS */
+    .links-box h5{
+      margin-bottom:15px;
+      color:#222;
+    }
+
+    .link-item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px;
+      border-radius:10px;
+      margin-bottom:10px;
+      background:#f5f7fb;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .link-item:hover{
+      background:#dbe8ff;
+    }
+
+    .link-item i{
+      color:#0d6efd;
+      font-size:20px;
+    }
+
+    /* CENTER PANEL */
+    .center-panel{
+      flex:1;
+      background:#fff;
+      border-radius:15px;
+      padding:30px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      position:relative;
+    }
+
+    .center-panel h2{
+      margin-bottom:25px;
+      color:#222;
+    }
+
+    /* BUTTON */
+    .leave-btn{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 25px;
+      font-size:18px;
+      border-radius:10px;
+    }
+
+    /* OPTIONS PANEL */
+    .options-panel{
+      display:none;
+      margin-top:25px;
+      width:300px;
+    }
+
+    .option-link{
+      display:block;
+      text-decoration:none;
+      background:#f5f7fb;
+      padding:14px;
+      margin-bottom:12px;
+      border-radius:10px;
+      color:#222;
+      transition:0.3s;
+      font-weight:500;
+    }
+
+    .option-link:hover{
+      background:#0d6efd;
+      color:white;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="main-container">
+
+  <div class="dashboard">
+
+    <!-- LEFT SIDE -->
+    <div class="left-panel">
+
+      <!-- PROFILE CARD -->
+      <div class="card-box profile-box">
+<!-- 
+        <img src="https://i.pravatar.cc/150?img=12" alt="profile"> -->
+
+        <h4>HR Manager</h4>
+
+        <p>Priya Sharma</p>
+
+      </div>
+
+      <!-- POPULAR LINKS -->
+      <div class="card-box links-box">
+
+        <h5>Popular Links</h5>
+
+        <div class="link-item">
+          <i class="bi bi-calendar-event"></i>
+          Holiday List
+        </div>
+
+        <div class="link-item">
+          <i class="bi bi-diagram-3"></i>
+          Rootz
+        </div>
+
+        <div class="link-item">
+          <i class="bi bi-people"></i>
+          Employee Directory
+        </div>
+
+        <div class="link-item">
+          <i class="bi bi-file-earmark-text"></i>
+          HR Policies
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CENTER -->
+    <div class="center-panel">
+
+      <h2>Employee Dashboard</h2>
+
+      <!-- LEAVE BUTTON -->
+      <button type="button"
+        class="btn btn-outline-primary leave-btn"
+        onclick="toggleOptions()">
+
+        <i class="bi bi-calendar-check"></i>
+
+        Leave
+
+      </button>
+
+      <!-- OPTIONS -->
+      <div id="options" class="options-panel">
+
+        <a href="leavepage.html" class="option-link">
+          Apply Leave
+        </a>
+
+        <a href="leavebalance.html" class="option-link">
+          Leave Balance
+        </a>
+
+        <a href="myteamleave.html" class="option-link">
+          My Team Leave
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+  function toggleOptions() {
+
+    let panel = document.getElementById("options");
+
+    if(panel.style.display === "block"){
+      panel.style.display = "none";
+    }
+    else{
+      panel.style.display = "block";
+    }
+
+  }
+
+</script>
+
+</body>
+</html>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Dashboard</title>
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f3f5f9;
+    }
+
+    .main-container{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      padding:30px;
+    }
+
+    .dashboard{
+      width:1100px;
+      display:flex;
+      gap:20px;
+    }
+
+    .left-panel{
+      width:300px;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .card-box{
+      background:#fff;
+      border-radius:15px;
+      padding:20px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .center-panel{
+      flex:1;
+      background:#fff;
+      border-radius:15px;
+      padding:30px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .leave-btn{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 20px;
+      font-size:18px;
+      border-radius:10px;
+    }
+
+    /* RIGHT PANEL HIDDEN BY DEFAULT */
+    .right-panel{
+      width:320px;
+      background:#fff;
+      border-radius:15px;
+      padding:20px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      display:none;   /* IMPORTANT */
+    }
+
+    .option-link{
+      display:block;
+      text-decoration:none;
+      background:#f5f7fb;
+      padding:14px;
+      margin-bottom:12px;
+      border-radius:10px;
+      color:#222;
+      font-weight:500;
+    }
+
+    .option-link:hover{
+      background:#0d6efd;
+      color:white;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="main-container">
+
+  <div class="dashboard">
+
+    <!-- LEFT -->
+    <div class="left-panel">
+
+      <div class="card-box">
+        <h4>HR Manager</h4>
+        <p>Priya Sharma</p>
+      </div>
+
+      <div class="card-box">
+        <h5>Popular Links</h5>
+        <div>Holiday List</div>
+        <div>Rootz</div>
+        <div>Employee Directory</div>
+        <div>HR Policies</div>
+      </div>
+
+    </div>
+
+    <!-- CENTER -->
+    <div class="center-panel">
+
+      <h2>Employee Dashboard</h2>
+
+      <button class="btn btn-outline-primary leave-btn"
+        onclick="toggleRightPanel()">
+
+        <i class="bi bi-calendar-check"></i>
+        Leave
+
+      </button>
+
+    </div>
+
+    <!-- RIGHT (HIDDEN INITIALLY) -->
+    <div id="rightPanel" class="right-panel">
+
+      <h4>Leave Options</h4>
+
+      <a class="option-link" href="leavepage.html">Apply Leave</a>
+      <a class="option-link" href="leavebalance.html">Leave Balance</a>
+      <a class="option-link" href="myteamleave.html">My Team Leave</a>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+function toggleRightPanel(){
+
+  const panel = document.getElementById("rightPanel");
+
+  if(panel.style.display === "flex"){
+    panel.style.display = "none";
+  } else {
+    panel.style.display = "block";
+  }
+
+}
+
+</script>
+
+</body>
+</html>

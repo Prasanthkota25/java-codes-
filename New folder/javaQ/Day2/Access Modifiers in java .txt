@@ -1,0 +1,60 @@
+// Access Modifiers  in java 
+
+
+>>> public 
+>>> private 
+>>> protected 
+>>> default 
+
+Public :> this Access Modifier  we can use anywhere like 
+same class ,same package , subclass , otherpackages 
+
+>>> Access from anywhere in the program 
+
+Ex ...
+
+public class car {
+  public int speed ;
+}
+
+Private :> this Access Modifier we can use in the same class 
+ 
+we can not use in the same package ,subclass,otherpackages.....
+
+>>> Often used for data hiding (encapsulation).
+
+
+EX ...
+
+ class vehicle { 
+ private int speed ;
+ }
+ 
+ protected :> this Access Modifier we can use in same class , same package, subclass 
+ 
+ 
+ Accessible:
+
+Within the same package
+
+In subclasses (even if in different packages)
+
+EX ...
+ 
+ public class vehicle {
+ protected int speed ; 
+ }
+ 
+ default :>  we can use in the  same class ,same package .
+
+ No modifier written.
+
+Accessible only inside the same package.
+ 
+ EX ...
+ 
+ class Car {
+ int speed ; 
+ } 
+ 
+ 

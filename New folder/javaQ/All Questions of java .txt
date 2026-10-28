@@ -1,0 +1,320 @@
+
+==============================================================counting numbers : =====================================================================
+======================================================================================================================================================
+		
+		public class all {
+
+	public static void main(String[] args) {
+
+		for (int i = 0; i <= 10; i++) {
+			System.out.println(i);
+		}
+	}
+}
+
+
+-------------------------------------------------------------------------- OR ------------------------------------------------------------------------
+
+
+
+public class all {
+
+	public static void main(String[] args) {
+
+		for (int i = 100; i >= 0; i -= 5) {
+			System.out.println(i);
+		}
+	}
+}
+
+
+================================================================ Swap of Two numbers : ==============================================================
+======================================================================================================================================================
+
+
+public class swap {
+	public static void main(String[] args) {
+		int a = 5, b = 10;
+
+		a = a + b;
+		b = a - b;
+		a = a - b;
+		System.out.println("a = :" + a + " b =:" + b);
+
+	}
+
+}
+
+
+
+================================================================ ODD and EVEN numbers : ==============================================================
+======================================================================================================================================================
+
+public class all {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the Number :");
+		int n = sc.nextInt();
+
+		if (n % 2 == 0) {
+			System.out.println(n + " even");
+		} else {
+			System.out.println(n + " odd");
+		}
+	}
+
+}
+
+
+
+
+================================================================= Even and odd given numbers : =======================================================
+======================================================================================================================================================
+
+
+
+
+public class all {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the Number :");
+		int n = sc.nextInt();
+		for (int i = 0; i <= n; i++) {
+			if (i % 2 == 0) {
+				System.out.println(i + " even");
+			} else {
+				System.out.println(i + " odd");
+			}
+		}
+	}
+}
+
+
+======================================================================Factorial number :  ============================================================
+======================================================================================================================================================
+
+public class all {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the Number :");
+		int n = sc.nextInt();
+
+		int factorial = 1;
+		for (int i = 1; i <= n; i++) {
+			factorial = factorial * i;
+		}
+		System.out.println("factorial : " + factorial);
+	}
+
+}
+
+========================================================================Average number : =============================================================
+======================================================================================================================================================
+public class all {
+
+	public static void main(String[] args) {
+
+		double price[] = { 10.5, 20.0, 30.75, 40.25, 50.0 };
+		double sum = 0;
+		for (int i = 0; i < price.length; i++) {
+			sum += price[i];
+		}
+		double average = sum / price.length;
+		System.out.println(average);
+	}
+}
+
+
+
+
+=======================================================================Multiplication=================================================================
+======================================================================================================================================================
+
+import java.util.Scanner;
+
+public class all {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the Number : ");
+		int n = sc.nextInt();
+
+		for (int i = 0; i <= 10; i++) {
+			System.out.println(n + " X " + i + " = " + (i * n));
+		}
+	}
+
+}
+
+
+
+=======================================================================Sum of numbers : ==============================================================
+======================================================================================================================================================
+
+
+
+
+import java.util.Scanner;
+
+public class all {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the Number : ");
+		int n = sc.nextInt();
+
+		int sum = 0;
+		for (int i = 0; i <= n; i++) {
+			sum += i;
+		}
+		System.out.println("Sum of the Number " + n + " is :" + sum);
+	}
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////---------------------------- Strings ---------------------/////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+============================================================================String rev : ==============================================================
+=======================================================================================================================================================
+
+
+
+
+public class all {
+
+	public static void main(String[] args) {
+		String s = "java";
+		String rev = "";
+		for (int i = s.length() - 1; i >= 0; i--) {
+			rev = rev + s.charAt(i);
+		}
+		System.out.println(rev);
+	}
+
+}
+
+
+-------------------------------------------------------------------------- OR ------------------------------------------------------------------------
+
+
+
+
+public class all {
+
+	public static void main(String[] args) {
+		String s = "java";
+		String rev = new StringBuilder(s).reverse().toString();
+		System.out.println(rev);
+	}
+
+}
+
+
+
+-------------------------------------------------------------------------- OR ------------------------------------------------------------------------
+
+
+
+
+
+public class all {
+
+	public static void main(String[] args) {
+		String s = "prasanth";
+		char arr[] = s.toCharArray();
+		int left = 0, right = s.length() - 1;
+		while (left < right) {
+			char temp = arr[left];
+			arr[left] = arr[right];
+			arr[right] = temp;
+			left++;
+			right--;
+
+		}
+		System.out.println(new String(arr));
+	}
+
+}
+		
+		
+===========================================================================Palindrome : ===============================================================
+=======================================================================================================================================================
+
+
+
+public class all {
+
+	public static void main(String[] args) {
+		String s = "madam";
+		String rev = new StringBuilder(s).reverse().toString();
+
+		if (s.equals(rev)) {
+			System.out.println("its palindrome ");
+		} else {
+			System.out.println("its not a palindrome ");
+		}
+
+	}
+
+}
+
+
+-------------------------------------------------------------------------- OR ------------------------------------------------------------------------
+
+
+public class all {
+
+	public static void main(String[] args) {
+		String s = "madam";
+		String rev = "";
+		for (int i = s.length() - 1; i >= 0; i--) {
+			rev = rev + s.charAt(i);
+		}
+		if (s.equals(rev)) {
+			System.out.println("its palindrome ");
+		} else {
+			System.out.println("its not a palindrome ");
+		}
+	}
+}
+
+
+======================================================================================================================================================
+==================================================================String count of Vowels and Consonents===============================================
+======================================================================================================================================================
+
+
+
+public class all {
+
+	public static void main(String[] args) {
+		String s = "java";
+		s = s.toLowerCase();
+
+		int vowels = 0;
+		int consonents = 0;
+		for (int i = 0; i < s.length(); i++) {
+			char ch = s.charAt(i);
+			if (ch >= 'a' && ch <= 'z') {
+				if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+					vowels++;
+				} else {
+					consonents++;
+				}
+			}
+		}
+		System.out.println("vowesl : " + vowels);
+		System.out.println("consonents :" + consonents);
+	}
+}
+
+
+
+

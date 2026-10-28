@@ -1,0 +1,222 @@
+
+
+
+# Palindrome Number .
+
+
+
+import java.util.Scanner;
+
+public class palindromenumber {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the String :");
+		String s = sc.next();
+		String rev = "";
+		for (int i = s.length() - 1; i >= 0; i--) {
+			rev += s.charAt(i);
+		}
+		if (s.equals(rev)) {
+			System.out.println("it is palindrome");
+		} else {
+			System.out.println("it is not a palindrome ");
+		}
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+# Prime Number .
+
+
+
+
+
+import java.util.Scanner;
+
+public class primenumber {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the Number : ");
+
+		int n = sc.nextInt();
+		boolean isprime = true;
+		if (n <= 1) {
+			isprime = false;
+		} else {
+			for (int i = 2; i < n; i++) {
+				if (n % i == 0) {
+					isprime = false;
+				}
+			}
+		}
+		if (isprime) {
+			System.out.println(n + " is Prime Number ");
+		} else {
+			System.out.println(n + " is not a Prime Number");
+		}
+	}
+
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Armstrong Number 
+
+
+
+import java.util.Scanner;
+
+public class Armstrongnumber {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the number : ");
+		int n = sc.nextInt();
+		int sum = 0;
+		int temp = n;
+
+		while (temp > 0) {
+			int digit = temp % 10;
+			sum += (digit * digit * digit);
+			temp /= 10;
+		}
+		if (sum == n) {
+			System.out.println("it is Armstrongnumber ");
+		} else {
+			System.out.println("it is not a Armstrong number");
+		}
+
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Factorial Number  
+
+
+
+import java.util.Scanner;
+
+public class Factorialnumber {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the Number : ");
+		int n = sc.nextInt();
+
+		long Factorial = 1;
+		for (int i = 1; i <= n; i++) {
+			Factorial = Factorial * i;
+		}
+		System.out.println(" Factorial number is : " + Factorial);
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Fibonacci Series 
+
+
+
+
+import java.util.Scanner;
+
+public class fibonaccinumbers {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the number : ");
+		int n = sc.nextInt();
+		int first = 0;
+		int secound = 1;
+		for (int i = 1; i <= n; i++) {
+			System.out.println(first + "");
+			int temp = first + secound;
+			first = secound;
+			secound = temp;
+		}
+	}
+}
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Reversing Number 
+
+
+
+import java.util.Scanner;
+
+public class reversednumber {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the number : ");
+		int n = sc.nextInt();
+		int reversed = 0;
+		int temp = n;
+		while (temp != 0) {
+			int digit = temp % 10;
+			reversed = reversed * 10 + digit;
+			temp /= 10;
+		}
+		System.out.println(" reversed : " + reversed);
+
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+# Swapping Number 
+
+
+import java.util.Scanner;
+
+public class Swapingnumber {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the value A : ");
+		int a = sc.nextInt();
+		System.out.println("Enter the value B : ");
+		int b = sc.nextInt();
+
+		a = a + b;
+		b = a - b;
+		a = a - b;
+
+		System.out.println(" A : " + a);
+		System.out.println(" B : " + b);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Printing Digits and separating Digits 
+
+import java.util.Scanner;
+
+public class PrintingAndSeparatingnumbers {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the Number : ");
+		String n = sc.next();
+		for (int i = 0; i < n.length(); i++) {
+			System.out.println(n.charAt(i));
+		}
+
+	}
+}
+
+

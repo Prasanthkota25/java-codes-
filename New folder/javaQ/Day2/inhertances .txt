@@ -1,0 +1,31 @@
+Multiple inheritance means:
+A class inherits from more than one parent class.
+Example problem:
+class A
+class B
+class C extends A, B
+
+
+
+This can cause the Diamond Problem:
+If both A and B define the same method, C doesn't know which one to use.
+Java Solution
+Java does not allow multiple inheritance with classes.
+
+
+
+Instead, Java allows multiple inheritance using interfaces.
+
+
+Example:
+interface A {
+    void methodA();
+}
+interface B {
+    void methodB();
+}
+class C implements A, B {
+    public void methodA() {}
+    public void methodB() {}
+}
+

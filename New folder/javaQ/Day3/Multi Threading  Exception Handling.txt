@@ -1,0 +1,403 @@
+ 1.Palindrome Number 
+
+import java.util.Scanner;
+
+public class palindromenumber {
+	static class palindromeThread extends Thread {
+		String s;
+
+		palindromeThread(String s) {
+			this.s = s;
+		}
+
+		public void run() {
+			try {
+				String rev = "";
+				for (int i = s.length() - 1; i >= 0; i--) {
+					rev = rev + s.charAt(i);
+				}
+				if (s.equals(rev)) {
+					System.out.println("it is Palindrome Number");
+				} else {
+					System.out.println("it is not a Palindrome Number ");
+				}
+			} catch (Exception e) {
+				System.out.println("Error ..." + e);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Enter the Number :  ");
+			String input = sc.next();
+			palindromeThread t = new palindromeThread(input);
+			t.start();
+		} catch (Exception e) {
+			System.out.println("Main Error :" + e);
+		} finally {
+			sc.close();
+		}
+
+	}
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+2.Prime Number 
+
+
+import java.util.Scanner;
+
+public class PrimeNumber {
+	static class primeThread extends Thread {
+		int n;
+
+		primeThread(int n) {
+			this.n = n;
+		}
+
+		public void run() {
+			try {
+				boolean isprime = true;
+				if (n <= 1) {
+					isprime = false;
+				} else {
+					for (int i = 2; i < n; i++) {
+						if (n % i == 0) {
+							isprime = false;
+						}
+					}
+				}
+				if (isprime) {
+					System.out.println("it is prime number");
+				} else {
+					System.out.println("it is not a prime number ");
+				}
+			} catch (
+
+			Exception e) {
+				System.out.println("Error...." + e);
+			}
+		}
+
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Enter the Number : ");
+			int input = sc.nextInt();
+			primeThread t = new primeThread(input);
+			t.start();
+		} catch (Exception e) {
+			System.out.println("Main Error ..." + e);
+		} finally {
+			sc.close();
+		}
+	}
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+3.Armstrong Number 
+
+
+
+import java.util.Scanner;
+
+public class Armstrongnumber {
+	static class ArmstrongThread extends Thread {
+		int n;
+
+		ArmstrongThread(int n) {
+			this.n = n;
+		}
+
+		public void run() {
+			try {
+				int sum = 0;
+				int temp = n;
+				while (temp > 0) {
+					int digit = temp % 10;
+					sum += (digit * digit * digit);
+					temp /= 10;
+				}
+				if (sum == n) {
+					System.out.println("it is Amstrong Number ");
+				} else {
+					System.out.println("it is not a Amstrong number ");
+				}
+			} catch (Exception e) {
+				System.out.println("Error...." + e);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Enter the Number : ");
+			int input = sc.nextInt();
+			ArmstrongThread t = new ArmstrongThread(input);
+			t.start();
+		} catch (Exception e) {
+			System.out.println("Main Error ..." + e);
+		} finally {
+			sc.close();
+		}
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+4.Factorial Number 
+
+
+
+import java.util.Scanner;
+
+public class FactorialNumber {
+	static class factorialThread extends Thread {
+		int n;
+
+		factorialThread(int n) {
+			this.n = n;
+		}
+
+		public void run() {
+			try {
+				long Factorial = 1;
+				for (int i = 1; i <= n; i++) {
+					Factorial = Factorial * i;
+				}
+				System.out.println("Factorial Number is : " + Factorial);
+
+			} catch (Exception e) {
+				System.out.println("Error ... " + e);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Enter the Number : ");
+			int input = sc.nextInt();
+			factorialThread t = new factorialThread(input);
+			t.start();
+		} catch (Exception e) {
+			System.out.println("Main Error ..." + e);
+		} finally {
+			sc.close();
+		}
+	}
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+5.Fibonacci Series 
+
+
+import java.util.Scanner;
+
+public class Fibonacciseries {
+	static class fibonacciThread extends Thread {
+		int n;
+
+		fibonacciThread(int n) {
+			this.n = n;
+		}
+
+		public void run() {
+			try {
+				int first = 0;
+				int secound = 1;
+				for (int i = 0; i <= n; i++) {
+					System.out.println(first + "");
+					int temp = first + secound;
+					first = secound;
+					secound = temp;
+				}
+			} catch (Exception e) {
+				System.out.println("Error..." + e);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Enter the Number : ");
+			int input = sc.nextInt();
+			fibonacciThread t = new fibonacciThread(input);
+			t.start();
+		} catch (Exception e) {
+			System.out.println("Main Error ....");
+		} finally {
+			sc.close();
+		}
+	}
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+6.Reversing Number 
+
+
+import java.util.Scanner;
+
+public class ReversingNumber {
+	static class reversThread extends Thread {
+		int n;
+
+		reversThread(int n) {
+			this.n = n;
+
+		}
+
+		public void run() {
+			try {
+
+				int temp = n;
+				int reversed = 0;
+				while (temp != 0) {
+					int digit = temp % 10;
+					reversed = reversed * 10 + digit;
+					temp /= 10;
+				}
+				System.out.println("Reversed Number : " + reversed);
+			} catch (Exception e) {
+				System.out.println("Error..." + e);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Enter the Number :");
+			int input = sc.nextInt();
+			reversThread t = new reversThread(input);
+			t.start();
+		} catch (Exception e) {
+			System.out.println("Main Error ..." + e);
+		} finally {
+			sc.close();
+		}
+	}
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+7.Swapping Number
+
+
+
+import java.util.Scanner;
+
+public class SwappingNumber {
+	static class Data {
+		int a, b;
+
+		Data(int a, int b) {
+			this.a = a;
+			this.b = b;
+		}
+	}
+
+	static class swappingThread extends Thread {
+		Data data;
+
+		swappingThread(Data data) {
+			this.data = data;
+		}
+
+		public void run() {
+			try {
+				synchronized (data) {
+					data.a = data.a + data.b;
+					data.b = data.a - data.b;
+					data.a = data.a - data.b;
+
+					System.out.println("A : " + data.a);
+					System.out.println("B : " + data.b);
+				}
+			} catch (Exception e) {
+				System.out.println("Error..." + e);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Enter the number A: ");
+			int a = sc.nextInt();
+			System.out.println("Enter the number  B: ");
+			int b = sc.nextInt();
+			Data data = new Data(a, b);
+			swappingThread t = new swappingThread(data);
+			t.start();
+		} catch (Exception e) {
+			System.out.println("Main Error ...." + e);
+		} finally {
+			sc.close();
+		}
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+8.Printing Digits and separating Digits
+
+
+
+
+import java.util.Scanner;
+
+public class PrintingDigits {
+	static class printingdigitsThread extends Thread {
+		String n;
+
+		printingdigitsThread(String n) {
+			this.n = n;
+		}
+
+		public void run() {
+			try {
+				for (int i = 0; i < n.length(); i++) {
+					System.out.println(n.charAt(i));
+				}
+
+			} catch (Exception e) {
+				System.out.println("Erro..." + e);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Enter the Number :");
+			String input = sc.next();
+			printingdigitsThread t = new printingdigitsThread(input);
+			t.start();
+
+		} catch (Exception e) {
+			System.out.println("Main Erro ..." + e);
+		} finally {
+			sc.close();
+		}
+	}
+}
+

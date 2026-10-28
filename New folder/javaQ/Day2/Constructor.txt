@@ -1,0 +1,36 @@
+ // constructor 
+ 
+ 
+ // A constructor is used to initialize  an object when it is created  . 
+ 
+ 
+ // key features : 
+ ... same name   as the class 
+ ... no return type 
+ ... called automatically  when object is created 
+ 
+ 
+ class Student {
+ 
+ String name ; 
+ 
+ Student(String name ){
+ this.name = name ;
+ }
+ } 
+ 
+ 
+ 
+ 
+ //  if you dont define  a constructorm, java automatically  provides a default  constructor .
+
+Ex :::: 
+
+
+class Test {
+}
+
+java internally created 
+Test (){
+}
+ 

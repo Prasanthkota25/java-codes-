@@ -1,0 +1,684 @@
+1.Define Encapsulation, Abstraction, Inheritance, and Polymorphism using a real-world analogy (e.g., a Car or a Bank Account).
+
+
+//Encapsulation .....
+   
+// Encapsulation is the process of the binding the data and method  together into a single class  
+// restriciting the direct access  to the data 
+// using the private variable and  public getters /setters  methods .......
+   
+Ex:
+
+   
+   public class Bank {
+private int balance ;
+
+public int getBalance (){
+return balance;
+}
+public void setBalance(int balance){
+this.balance = balance;
+}
+
+public static void main (String [] args ){
+
+Bank myAcc = new Bank();
+myAcc.setBalance(500000);
+System.out.println(myAcc.getBalance());
+}
+}
+
+
+***************************************************************************************************************************************************
+//Abstraction .....
+   
+   
+// Abstraction is the process  of the hinding internal  implemwntation  detials and showing  only essential functionality to the  user .
+   
+Ex:
+
+
+abstract class BankAccount {
+
+ abstract void withdraw();
+
+void deposit(){
+System.out.println("deposit your money in the ATM ");
+}
+
+static class Atm extends BankAccount {
+@Override
+
+void withdraw(){
+System.out.println("you can take your money by ATM card ");
+}
+}
+public static void main (String [] args ){
+
+BankAccount myAcc = new Atm ();
+myAcc.deposit();
+myAcc.withdraw();
+}
+}
+
+
+================================================================ Interface ===============================================================
+
+// interface .....
+
+//  An interface in java is used to achieve 100% abstraction  
+// it contains the method declaration (with out implement ) and a class must implement thos methods .
+
+Ex:
+
+
+interface bankAccounts {
+void  withdraw();
+ 
+ default  void deposit(){
+ System.out.println("You can deposit your money in ATM  Center ...");
+ }
+ static class Atm implements bankAccounts{
+ 
+  public void withdraw(){
+ System.out.println("You can withdraw your money in Atm ...");
+ }
+ }
+ public static void main (String [] args ){
+ 
+ Atm myacc = new Atm();
+ myacc.deposit();
+ myacc.withdraw();
+ }
+ }
+
+****************************************************************************************************************************************************
+
+
+// Inheritance .....
+ 
+ 
+// in java that allows one class to acquire  the fields  and methods  of another class  using the extends keyword .
+// it represents the  "is-a " relationship  between class 
+// child class  acquire the fields and methods of the parent class using the Extend Keyword.
+
+Ex:
+
+
+public class cars {
+
+void color (){
+System.out.println(" my car color is Black ...");
+}
+
+static class Bmw extends cars {
+
+ void  model(){
+ System.out.println("my car model is BMW X5 ...");
+ }
+ }
+ public static void main(String [] args ){
+ Bmw  myCar = new Bmw ();
+ myCar.model();
+ myCar.color();
+ }
+ }
+ 
+****************************************************************************************************************************************************** 
+ 
+//  Polymorphism MethodOverloading ..... 
+// compile-time Polymorphism...
+
+
+
+//  compile-time Polymorphism when multiple  methods have the same name  but the diffrent  parameters .
+// the method call is resoveld at compile-time ..... 
+
+Ex:
+
+
+public class calculator {
+
+int add (int a,int b) {
+return  a+b;
+}
+int add (int a ,int b ,int c ){
+return a+b+c;
+}
+double add (double a , double b , double c ){
+
+return a+b+c ;
+}
+
+public static void main (String [] main ){
+
+calculator mycal = new calculator();
+
+System.out.println(mycal.add(10,20)); 
+System.out.println(mycal.add(5,10,15)); 
+System.out.println(mycal.add(10,20,70)); 
+}
+}
+
+
+**************************************************************************************************************************************************
+
+//  Polymorphism MethodOverrideing .....   // Run-time Polymorphism
+  
+
+// when a subclass provides a specific  implementation  of a method already  defined in its  superclass 
+// the method call is resovled at runtime  based on the object .  
+
+Ex:
+
+
+public class payments {
+
+void pay (){
+System.out.println("You can Withdraw your money through Atm ...");
+}
+
+static class onlinepayments extends payments{
+@Override 
+void pay(){
+System.out.println("You can done your payments through online Apps ....");
+}
+}
+public static void main (String [] args ){
+
+payments mypayments ;
+
+mypayments = new onlinepayments();
+mypayments.pay();
+}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ 1: In a class, which elements represent the "state" and which represent the "behavior"?
+
+
+// State  ... Represented by the fields / variables ( instance  variables) they store the data of the object 
+
+// Behavoir ... Represented by the methods  they define  what the object can do 
+
+
+class car {
+
+String color ;
+int speed ;
+
+void Accelerate (){
+
+speed +=25;
+}
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+2:What is the purpose of a constructor? Can you have a class without a constructor?
+
+ // constructor 
+ 
+ 
+ // A constructor is used to initialize  an object when it is created  . 
+ 
+ 
+ // key features : 
+ ... same name   as the class 
+ ... no return type 
+ ... called automatically  when object is created 
+ 
+ 
+ class Student {
+ 
+ String name ; 
+ 
+ Student(String name ){
+ this.name = name ;
+ }
+ } 
+ 
+ 
+ 
+ 
+ //  if you dont define  a constructorm, java automatically  provides a default  constructor .
+
+Ex :::: 
+
+
+class Test {
+}
+
+java internally created 
+Test (){
+}
+ 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+3:  Explain the difference between public, private, protected, and default?
+
+// Access Modifiers  in java 
+
+
+>>> public 
+>>> private 
+>>> protected 
+>>> default 
+
+Public :> this Access Modifier  we can use anywhere like 
+same class ,same package , subclass , otherpackages 
+
+>>> Access from anywhere in the program 
+
+Ex ...
+
+public class car {
+  public int speed ;
+}
+
+Private :> this Access Modifier we can use in the same class 
+ 
+we can not use in the same package ,subclass,otherpackages.....
+
+>>> Often used for data hiding (encapsulation).
+
+
+EX ...
+
+ class vehicle { 
+ private int speed ;
+ }
+ 
+ protected :> this Access Modifier we can use in same class , same package, subclass 
+ 
+ 
+ Accessible:
+
+Within the same package
+
+In subclasses (even if in different packages)
+
+EX ...
+ 
+ public class vehicle {
+ protected int speed ; 
+ }
+ 
+ default :>  we can use in the  same class ,same package .
+
+ No modifier written.
+
+Accessible only inside the same package.
+ 
+ EX ...
+ 
+ class Car {
+ int speed ; 
+ } 
+ 
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 4:What is the difference between the this keyword and the super keyword?
+ 
+  // This And Super Keywords 
+ 
+ This :> this keyword can be used  current class  object 
+ Super :> this keyword can be used parent class object 
+
+
+
+This : >  used to refer to the current  object's  variables or methods . 
+
+Ex ....
+
+class student {
+String name ;
+
+student (String name ){
+this.name = name ;
+}
+}
+public static void main(String [] args ){
+
+student s = new student("prasanth kota");
+System.out.println(s.name);
+
+
+
+
+Super  : >  used to access the  parent class  methods and variables and also constructors . 
+
+
+ Ex .... 
+ 
+  class Animal {
+  void sound (){
+  System.out.println("Animal is shouting " );
+  }
+  }
+  
+static class Dog extends Animal {
+ 
+ void sound() {
+ super.sound();
+ System.out.println(" Dog is barking " );
+ }
+ }
+ public static void main (String [] args ){
+ Dog mydog = new Dog();
+ mydog.sound();
+ }
+ 
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 5:Compare Method Overloading (Compile-time) and Method Overriding (Runtime). Can you override a static method?
+ 
+ 
+ // Method overloading ...
+           AND 
+// Method overriding ...
+
+
+//method Overloading (complie-time Error ) .
+
+>> complietime Error 
+>> same class 
+>> parameters must be different 
+>> return type can be vary 
+>> inheritance is not needed 
+
+Ex ....
+
+class printer {
+
+ void int print (int num ){
+return num;
+}
+
+ void String print (String  text ){
+return text ;
+}
+
+void double  print (double num){
+return num;
+}
+
+
+	public static void main(String[] args) {
+		printer myprint = new printer();
+		System.out.println(myprint.print(25));
+		System.out.println(myprint.print("prasanth kota"));
+		System.out.println(myprint.print(2525));
+
+	}
+	}
+
+
+
+// method overriding (run-time Error).
+
+
+>> Runtime 
+>> parent + child 
+>> parameters must be same 
+>> return type must be compatible 
+>>  inheritance it is needed 
+
+Ex ...
+
+class animal {
+
+		void Sound() {
+			System.out.println("animal is shouting ");
+		}
+	}
+
+	static class Dog extends animal {
+		@Override
+		void Sound() {
+			System.out.print("Dog is barking ");
+		}
+	}
+
+	public static void main(String[] args) {
+
+		Dog myanimal = new Dog();
+		myanimal.Sound();
+
+	}
+
+
+
+
+
+Can you override a static method?
+No.
+Static methods belong to the class, not the object. They are hidden, not overridden.
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+6:When should you use an Abstract Class versus an Interface? Can an interface have a constructor?
+
+
+// abstract  class 
+
+
+Abstract class used when the class shares  common behavior  and state 
+
+features : 
+>> can  have abstract methods 
+>> can have normal methods
+>> can have constructors 
+>> can have  instance variables 
+
+
+Ex................
+
+ abstract class Animal {
+		abstract void sound();
+
+		void eat() {
+			System.out.println("Eating .....");
+		}
+
+		static class myDog extends Animal {
+			@Override
+			void sound() {
+				System.out.println("my dog is barking ");
+			}
+		}
+
+		public static void main(String[] args) {
+
+			Animal mydog = new myDog();
+			mydog.eat();
+			mydog.sound();
+		}
+	}
+	
+	
+// interface 
+
+used to define  a contract (what a class  must do)
+
+features : 
+>> methods are abstract  by defualt 
+>> variables  are public state files 
+>>  supports multiple inheritance 
+
+
+
+Ex ..........
+
+	interface flyable {
+		void fly();
+	}
+
+	static class birds implements flyable {
+		public void fly() {
+			System.out.println("All birds are flying in the sky ....");
+		}
+	}
+
+public static void main(String[] args) {
+	flyable mybird = new birds();
+	mybird.fly();
+
+}
+
+
+
+When to use?
+Use Abstract Class when:
+Classes share code
+Need constructors or fields
+
+
+
+Use Interface when:
+Only behavior is required
+Multiple inheritance needed
+
+
+Can an interface have a constructor?
+No.
+Interfaces cannot have constructors because they cannot be instantiated.
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+7: What is it, and how does your specific language (Java) solve the issue of multiple inheritance?
+
+Multiple inheritance means:
+A class inherits from more than one parent class.
+Example problem:
+class A
+class B
+class C extends A, B
+
+
+
+This can cause the Diamond Problem:
+If both A and B define the same method, C doesn't know which one to use.
+Java Solution
+Java does not allow multiple inheritance with classes.
+
+
+
+Instead, Java allows multiple inheritance using interfaces.
+
+
+Example:
+interface A {
+    void methodA();
+}
+interface B {
+    void methodB();
+}
+class C implements A, B {
+    public void methodA() {}
+    public void methodB() {}
+}
+
+		
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+8: What happens when you apply the final (or const) keyword to a class? To a method? To a variable?
+
+ 
+ 
+ in java The Final Keyword is used 
+ 
+ >>> Final class 
+ >>> Final Method 
+ >>> Final variable 
+ 
+
+ 
+ Final class :
+
+> the class  cannot be  subclassed  (no other  class  can  extend  it ).
+> prevent  inheritance  to keep  the  class behavior  fixed  and secure 
+
+Ex >..
+
+final class Vehicle {
+    // class implementation
+}
+
+// This is NOT allowed:
+class Car extends Vehicle {} //  Compile-time error
+ 
+ 
+ 
+ Final Method : 
+ 
+> the method cannot be overridden is any subclass. 
+> ensure that the behavior of the method remains  unchanged  in subclass
+
+Ex ...
+
+class Vehicle {
+    final void startEngine() {
+        System.out.println("Engine started");
+    }
+}
+
+class Car extends Vehicle {
+    // Cannot override startEngine():
+    // void startEngine() { ... }  Compile-time error
+}
+
+
+Final variable : 
+
+> the variable values  cannot be changed after the initialization 
+> For primitive types, the value is constant.
+> For objects, the reference is constant, but the object’s contents can still be modified.
+ 
+ 
+ Ex with  the primitive .....
+ 
+ 
+ final int MAX_SPEED = 120;
+MAX_SPEED = 150; //  Compile-time error
+
+
+
+Ex with the object ...
+
+final List<String> names = new ArrayList<>();
+names.add("Alice");       //  Allowed
+names = new ArrayList<>(); //  Not allowed (cannot change reference)
+
+
+
+ 
+final on class → no inheritance
+
+final on method → no overriding
+
+final on variable → constant value/reference
+ 
+ 
+ Java designers wanted to simplify the language.
+
+Instead of having two keywords (const and final) for constants, they chose only final.
+
+final can make variables constant, but for classes and methods, it also controls inheritance and overriding.
+
+const is reserved but not used, so writing const in Java will cause a compile-time error.
+
+

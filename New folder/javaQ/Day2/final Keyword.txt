@@ -1,0 +1,97 @@
+ 
+ 
+ in java The Final Keyword is used 
+ 
+ >>> Final class 
+ >>> Final Method 
+ >>> Final variable 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Final class :
+
+> the class  cannot be  subclassed  (no other  class  can  extend  it ).
+> prevent  inheritance  to keep  the  class behavior  fixed  and secure 
+
+Ex >..
+
+final class Vehicle {
+    // class implementation
+}
+
+// This is NOT allowed:
+class Car extends Vehicle {} //  Compile-time error
+ 
+ 
+ 
+ Final Method : 
+ 
+> the method cannot be overridden is any subclass. 
+> ensure that the behavior of the method remains  unchanged  in subclass
+
+Ex ...
+
+class Vehicle {
+    final void startEngine() {
+        System.out.println("Engine started");
+    }
+}
+
+class Car extends Vehicle {
+    // Cannot override startEngine():
+    // void startEngine() { ... }  Compile-time error
+}
+
+
+Final variable : 
+
+> the variable values  cannot be changed after the initialization 
+> For primitive types, the value is constant.
+> For objects, the reference is constant, but the object’s contents can still be modified.
+ 
+ 
+ Ex with  the primitive .....
+ 
+ 
+ final int MAX_SPEED = 120;
+MAX_SPEED = 150; //  Compile-time error
+
+
+
+Ex with the object ...
+
+final List<String> names = new ArrayList<>();
+names.add("Alice");       //  Allowed
+names = new ArrayList<>(); //  Not allowed (cannot change reference)
+
+
+
+ 
+final on class → no inheritance
+
+final on method → no overriding
+
+final on variable → constant value/reference
+ 
+ 
+ 
+ 
+ 
+ 
+ Java designers wanted to simplify the language.
+
+Instead of having two keywords (const and final) for constants, they chose only final.
+
+final can make variables constant, but for classes and methods, it also controls inheritance and overriding.
+
+const is reserved but not used, so writing const in Java will cause a compile-time error.

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .card-option {
+            border: none;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        .card-option:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+            background: #0d6efd;
+            color: white;
+        }
+
+        .card-option h4 {
+            margin: 0;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 class="text-center">Leave Management</h2>
+
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-md-3">
+                <div class="card-option" onclick="alert('Apply for Leave')">
+                    <h4>Apply for Leave</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card-option" onclick="alert('Leave Balance Summary')">
+                    <h4>Leave Balance Summary</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card-option" onclick="alert('My Team Leave')">
+                    <h4>My Team Leave</h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

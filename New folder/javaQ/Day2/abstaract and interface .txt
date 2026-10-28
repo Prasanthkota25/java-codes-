@@ -1,0 +1,88 @@
+// abstract  class 
+
+
+Abstract class used when the class shares  common behavior  and state 
+
+features : 
+>> can  have abstract methods 
+>> can have normal methods
+>> can have constructors 
+>> can have  instance variables 
+
+
+Ex................
+
+ abstract class Animal {
+		abstract void sound();
+
+		void eat() {
+			System.out.println("Eating .....");
+		}
+
+		static class myDog extends Animal {
+			@Override
+			void sound() {
+				System.out.println("my dog is barking ");
+			}
+		}
+
+		public static void main(String[] args) {
+
+			Animal mydog = new myDog();
+			mydog.eat();
+			mydog.sound();
+		}
+	}
+	
+	
+// interface 
+
+used to define  a contract (what a class  must do)
+
+features : 
+>> methods are abstract  by defualt 
+>> variables  are public state files 
+>>  supports multiple inheritance 
+
+
+
+Ex ..........
+
+	interface flyable {
+		void fly();
+	}
+
+	static class birds implements flyable {
+		public void fly() {
+			System.out.println("All birds are flying in the sky ....");
+		}
+	}
+
+public static void main(String[] args) {
+	flyable mybird = new birds();
+	mybird.fly();
+
+}
+
+
+
+
+When to use?
+Use Abstract Class when:
+Classes share code
+Need constructors or fields
+
+
+
+Use Interface when:
+Only behavior is required
+Multiple inheritance needed
+
+
+Can an interface have a constructor?
+No.
+Interfaces cannot have constructors because they cannot be instantiated.
+
+
+
+		

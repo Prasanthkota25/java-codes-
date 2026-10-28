@@ -1,0 +1,15 @@
+// State  ... Represented by the fields / variables ( instance  variables) they store the data of the object 
+
+// Behavoir ... Represented by the methods  they define  what the object can do 
+
+
+class car {
+
+String color ;
+int speed ;
+
+void Accelerate (){
+
+speed +=25;
+}
+}

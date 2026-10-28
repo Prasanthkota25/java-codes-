@@ -1,0 +1,560 @@
+
+<script>
+
+    // DEFAULT BALANCES
+
+    const defaultBalances = {
+
+        privilege: 10,
+        sick: 5,
+        compOff: 4
+    };
+
+    // LOAD BALANCES
+
+    let balances =
+        JSON.parse(localStorage.getItem("leaveBalances"))
+        || defaultBalances;
+
+    // EMPLOYEE LIST
+
+    const empData = [
+
+        "Jim Halpert",
+        "Pam Beesly",
+        "Dwight Schrute",
+        "Stanley Hudson",
+        "Michael Scott"
+    ];
+
+    let selectedCC = [];
+
+    // SAVE BALANCES
+
+    function saveBalances() {
+
+        localStorage.setItem(
+            "leaveBalances",
+            JSON.stringify(balances)
+        );
+    }
+
+    // UPDATE BALANCE DISPLAY
+
+    function updateLeaveBalance() {
+
+        const leaveType =
+            document.getElementById("leaveType").value;
+
+        const leaveBalance =
+            document.getElementById("leaveBalance");
+
+        if (leaveType === "Privilege") {
+
+            leaveBalance.value =
+                balances.privilege.toFixed(1);
+        }
+
+        else if (leaveType === "Sick") {
+
+            leaveBalance.value =
+                balances.sick.toFixed(1);
+        }
+
+        else if (leaveType === "Comp-Off Leave") {
+
+            leaveBalance.value =
+                balances.compOff.toFixed(1);
+        }
+
+        else if (leaveType === "LOP") {
+
+            leaveBalance.value =
+                "Unlimited";
+        }
+
+        else {
+
+            leaveBalance.value = "0";
+        }
+    }
+
+    // CALCULATE LEAVE DAYS
+
+    function calcDays() {
+
+        const start =
+            document.getElementById("startDate").value;
+
+        const end =
+            document.getElementById("endDate").value;
+
+        const sessionField =
+            document.getElementById("session");
+
+        const session =
+            sessionField.value;
+
+        const noOfDays =
+            document.getElementById("noOfDays");
+
+        if (!start || !end) {
+
+            noOfDays.value = "";
+
+            sessionField.disabled = true;
+
+            sessionField.value = "full";
+
+            return;
+        }
+
+        const startDate =
+            new Date(start);
+
+        const endDate =
+            new Date(end);
+
+        if (startDate > endDate) {
+
+            alert("To Date should be greater than From Date");
+
+            noOfDays.value = "";
+
+            return;
+        }
+
+        let totalDays = 0;
+
+        let currentDate =
+            new Date(startDate);
+
+        while (currentDate <= endDate) {
+
+            const day =
+                currentDate.getDay();
+
+            if (day !== 0 && day !== 6) {
+
+                totalDays++;
+            }
+
+            currentDate.setDate(
+                currentDate.getDate() + 1
+            );
+        }
+
+        if (totalDays === 1) {
+
+            sessionField.disabled = false;
+
+            if (
+                session === "firstHalf" ||
+                session === "secondHalf"
+            ) {
+
+                totalDays = 0.5;
+            }
+        }
+
+        else {
+
+            sessionField.disabled = true;
+
+            sessionField.value = "full";
+        }
+
+        noOfDays.value = totalDays;
+    }
+
+    // SEARCH EMPLOYEES
+
+    function searchEmployees(query) {
+
+        const list =
+            document.getElementById("autocompleteList");
+
+        if (query.length < 3) {
+
+            list.style.display = "none";
+
+            return;
+        }
+
+        const filtered =
+            empData.filter(emp =>
+                emp.toLowerCase().includes(query.toLowerCase())
+            );
+
+        list.innerHTML =
+            filtered.map(emp => `
+
+                <div class="search-item"
+                     onclick="addCC('${emp}')">
+
+                    ${emp}
+
+                </div>
+
+            `).join("");
+
+        list.style.display =
+            filtered.length ? "block" : "none";
+    }
+
+    // ADD CC
+
+    function addCC(name) {
+
+        if (!selectedCC.includes(name)) {
+
+            selectedCC.push(name);
+
+            updateChips();
+        }
+
+        document.getElementById("ccSearch").value = "";
+
+        document.getElementById("autocompleteList").style.display =
+            "none";
+    }
+
+    // UPDATE CHIPS
+
+    function updateChips() {
+
+        const container =
+            document.getElementById("chipContainer");
+
+        container.innerHTML =
+            selectedCC.map(name => `
+
+                <div class="chip">
+
+                    ${name}
+
+                    <button type="button"
+                            class="chip-remove-btn"
+                            onclick="removeCC('${name}')">
+
+                        ✖
+
+                    </button>
+
+                </div>
+
+            `).join("");
+    }
+
+    // REMOVE CC
+
+    function removeCC(name) {
+
+        selectedCC =
+            selectedCC.filter(emp => emp !== name);
+
+        updateChips();
+    }
+
+    // CHARACTER COUNT
+
+    document.getElementById("reasonArea")
+        .addEventListener("input", function () {
+
+            document.getElementById("charCount").innerText =
+                `${this.value.length}/250`;
+        });
+
+    // RESET FORM
+
+    function resetForm() {
+
+        document.getElementById("leaveEntryForm").reset();
+
+        selectedCC = [];
+
+        updateChips();
+
+        document.getElementById("charCount").innerText =
+            "0/250";
+
+        document.getElementById("noOfDays").value = "";
+
+        document.getElementById("leaveBalance").value = "0";
+
+        document.getElementById("session").disabled = true;
+    }
+
+    // SAVE HISTORY
+
+    function saveLeaveHistory(data) {
+
+        localStorage.setItem(
+            "leaveHistory",
+            JSON.stringify(data)
+        );
+    }
+
+    // LOAD HISTORY
+
+    function loadLeaveHistory() {
+
+        return JSON.parse(
+            localStorage.getItem("leaveHistory")
+        ) || [];
+    }
+
+    // RENDER HISTORY
+
+    function renderLeaveHistory() {
+
+        const table =
+            document.getElementById("historyBody");
+
+        table.innerHTML = "";
+
+        const historyData =
+            loadLeaveHistory();
+
+        historyData.forEach((item, index) => {
+
+            const row =
+                document.createElement("tr");
+
+            row.innerHTML = `
+
+                <td>${item.employeeName}</td>
+                <td>${item.leaveType}</td>
+                <td>${item.fromDate}</td>
+                <td>${item.toDate}</td>
+                <td>${item.sessionDisplay}</td>
+                <td>${item.noOfDays}</td>
+                <td>${item.reason}</td>
+                <td>${item.status}</td>
+
+                <td>
+
+                    <i class="fa-solid fa-trash cancel-hover"
+                       onclick="deleteRow(${index})">
+                    </i>
+
+                </td>
+            `;
+
+            table.appendChild(row);
+        });
+    }
+
+    // DELETE LEAVE
+
+    function deleteRow(index) {
+
+        let historyData =
+            loadLeaveHistory();
+
+        const deletedLeave =
+            historyData[index];
+
+        // RESTORE BALANCE
+
+        if (deletedLeave.leaveType === "Privilege") {
+
+            balances.privilege +=
+                deletedLeave.noOfDays;
+        }
+
+        else if (deletedLeave.leaveType === "Sick") {
+
+            balances.sick +=
+                deletedLeave.noOfDays;
+        }
+
+        else if (deletedLeave.leaveType === "Comp-Off Leave") {
+
+            balances.compOff +=
+                deletedLeave.noOfDays;
+        }
+
+        saveBalances();
+
+        historyData.splice(index, 1);
+
+        saveLeaveHistory(historyData);
+
+        renderLeaveHistory();
+
+        updateLeaveBalance();
+
+        alert("Leave Deleted Successfully");
+    }
+
+    // APPLY LEAVE
+
+    document.getElementById("leaveEntryForm")
+        .onsubmit = function (e) {
+
+            e.preventDefault();
+
+            const employeeName =
+                document.getElementById("fullName").value;
+
+            const leaveType =
+                document.getElementById("leaveType").value;
+
+            const fromDate =
+                document.getElementById("startDate").value;
+
+            const toDate =
+                document.getElementById("endDate").value;
+
+            const session =
+                document.getElementById("session").value;
+
+            const noOfDays =
+                parseFloat(document.getElementById("noOfDays").value);
+
+            const reason =
+                document.getElementById("reasonArea").value.trim();
+
+            const contactNumber =
+                document.getElementById("contactNumber").value;
+
+            // VALIDATION
+
+            if (leaveType === "") {
+
+                alert("Please Select Leave Type");
+
+                return;
+            }
+
+            if (!fromDate || !toDate) {
+
+                alert("Please Select Dates");
+
+                return;
+            }
+
+            if (!reason) {
+
+                alert("Please Enter Reason");
+
+                return;
+            }
+
+            if (!noOfDays || noOfDays <= 0) {
+
+                alert("Invalid Leave Days");
+
+                return;
+            }
+
+            if (!/^[0-9]{10}$/.test(contactNumber)) {
+
+                alert("Please Enter Valid 10 Digit Mobile Number");
+
+                return;
+            }
+
+            // CHECK BALANCE
+
+            if (leaveType === "Privilege") {
+
+                if (noOfDays > balances.privilege) {
+
+                    alert("Insufficient Privilege Leave Balance");
+
+                    return;
+                }
+
+                balances.privilege -= noOfDays;
+            }
+
+            else if (leaveType === "Sick") {
+
+                if (noOfDays > balances.sick) {
+
+                    alert("Insufficient Sick Leave Balance");
+
+                    return;
+                }
+
+                balances.sick -= noOfDays;
+            }
+
+            else if (leaveType === "Comp-Off Leave") {
+
+                if (noOfDays > balances.compOff) {
+
+                    alert("Insufficient Comp-Off Balance");
+
+                    return;
+                }
+
+                balances.compOff -= noOfDays;
+            }
+
+            // SAVE BALANCE
+
+            saveBalances();
+
+            updateLeaveBalance();
+
+            // SESSION TEXT
+
+            let sessionDisplay = "Full Day";
+
+            if (session === "firstHalf") {
+
+                sessionDisplay = "First Half";
+            }
+
+            if (session === "secondHalf") {
+
+                sessionDisplay = "Second Half";
+            }
+
+            // LEAVE OBJECT
+
+            const leaveData = {
+
+                employeeName,
+                leaveType,
+                fromDate,
+                toDate,
+                sessionDisplay,
+                noOfDays,
+                reason,
+                status: "Pending"
+            };
+
+            // LOAD EXISTING HISTORY
+
+            let historyData =
+                loadLeaveHistory();
+
+            // ADD NEW LEAVE
+
+            historyData.unshift(leaveData);
+
+            // SAVE HISTORY
+
+            saveLeaveHistory(historyData);
+
+            // RENDER TABLE
+
+            renderLeaveHistory();
+
+            alert("Leave Applied Successfully!");
+
+            resetForm();
+        };
+
+    // PAGE LOAD
+
+    window.onload = function () {
+
+        renderLeaveHistory();
+    };
+
+</script>

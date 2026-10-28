@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    #options {
+      display: none;
+    }
+
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --navbar-color: #f8f9fa;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --navbar-color: #1f1f1f;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .navbar {
+      background-color: var(--navbar-color) !important;
+    }
+
+    .back-btn {
+      margin: 40px;
+      padding: 18px 20px;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      height: 100px;
+      background-color: var(--navbar-color);
+      color: var(--text-color);
+      border: 1px solid var(--text-color);
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .options-panel {
+      position: fixed;
+      top: 100px;
+      right: 0;
+      width: 220px;
+      background: var(--bg-color);
+      border-left: 2px solid #ddd;
+      padding: 15px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .options-panel a {
+      padding: 10px;
+      background: #0d6efd;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background: #222;
+      color: white;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+
+      <!-- <span class="navbar-brand"  >Infinite</span> -->
+
+        <li class="nav-item">
+          <a class="navbar-brand" href="HomePage.html">Infinite</a>
+        </li>
+      <div class="ms-auto d-flex align-items-center gap-3">
+
+        <!-- THEME -->
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+            Theme
+          </button>
+
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" onclick="setTheme('light')">Light</button></li>
+            <li><button class="dropdown-item" onclick="setTheme('dark')">Dark</button></li>
+          </ul>
+        </div>
+
+        <!-- ACCOUNT -->
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+            👤 <span id="usernameDisplay">Account</span>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+            <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- LEAVE BUTTON -->
+
+  <button type="button" class="btn btn-outline-primary back-btn" onclick="toggleOptions()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar"
+      viewBox="0 0 16 16">
+      <path
+        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+    </svg>
+    Leave
+  </button>
+
+
+  <!-- LEAVE PANEL -->
+  <div id="options" class="options-panel">
+    <a href="leavepage.html">Apply Leave</a>
+    <a href="levaebalance.html">Leave Balance</a>
+    <a href="myteamleave.html">My Team Leave</a>
+  </div>
+
+  <!-- SCRIPT -->
+<script>
+
+// LOGIN CHECK
+const user = localStorage.getItem("username");
+
+if (!user) {
+  window.location.href = "loginpage.html";
+}
+
+// SHOW USERNAME
+document.getElementById("usernameDisplay").innerText = user;
+
+// LOGOUT
+function logout() {
+  localStorage.removeItem("username");
+  window.location.href = "loginpage.html";
+}
+
+// TOGGLE LEAVE PANEL
+function toggleOptions() {
+  const panel = document.getElementById("options");
+  panel.style.display = panel.style.display === "flex" ? "none" : "flex";
+}
+
+document.addEventListener("click", function (e) {
+  const panel = document.getElementById("options");
+  const btn = document.querySelector(".back-btn");
+
+  if (!panel.contains(e.target) && !btn.contains(e.target)) {
+    panel.style.display = "none";
+  }
+});
+
+// THEME
+function setTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+}
+
+window.onload = function () {
+  const saved = localStorage.getItem("theme");
+  if (saved) {
+    document.documentElement.setAttribute("data-theme", saved);
+  }
+};
+
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <footer>
+    Infinite Computer
+  </footer>
+
+</body>
+
+</html>
