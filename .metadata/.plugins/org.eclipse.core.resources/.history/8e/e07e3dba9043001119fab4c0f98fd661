@@ -1,7 +1,0 @@
-package javaCollectionsAll;
-
-public class Stream_Api_Example {
-	public static void main(String[] args) {
-
-	}
-}

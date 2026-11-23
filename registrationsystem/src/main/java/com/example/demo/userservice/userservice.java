@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.userentity.userentity;
 import com.example.demo.userrespiratory.userrespiratory;
-
+ 
 @Service
 public class userservice {
 

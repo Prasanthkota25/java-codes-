@@ -1,0 +1,294 @@
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class JavarRegistarationSystemApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(JavarRegistarationSystemApplication.class, args);
+	}
+
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+package com.example.demo.usercontroller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.userentity.userEntity;
+import com.example.demo.userservice.userService;
+
+@Controller
+public class userController {
+
+	@Autowired
+	private userService service;
+
+	@GetMapping("/registrationpage")
+	public String register() {
+		return "registrationpage";
+	}
+
+	@GetMapping("/loginpage")
+	public String login() {
+		return "loginpage";
+	}
+
+	@GetMapping("/forgotpage")
+	public String forgot() {
+		return "forgotpage";
+	}
+
+	@PostMapping("/register")
+	public String registerUser(@ModelAttribute("userObj") userEntity user) {
+		service.register(user);
+		return "redirect:/loginpage";
+	}
+
+	@PostMapping("/login")
+	public String loginUser(@RequestParam String username, @RequestParam String password, Model model) {
+
+		userEntity user = service.login(username, password);
+
+		if (user != null) {
+			model.addAttribute("username", user.getUsername());
+			return "welcomepage";
+		}
+
+		model.addAttribute("error", "Invalid username or password");
+		return "loginpage";
+	}
+
+	@PostMapping("/forgotpassword")
+	public String forgotPassword(@RequestParam String username, @RequestParam String newPassword,
+			@RequestParam String confirmPassword, Model model) {
+
+		if (!newPassword.equals(confirmPassword)) {
+			model.addAttribute("error", "Passwords do not match");
+			return "forgotpage";
+		}
+
+		boolean isUpdated = service.resetPassword(username, newPassword);
+
+		if (isUpdated) {
+			model.addAttribute("message", "Password updated successfully. Please login with new password.");
+			return "loginpage";
+		} else {
+			model.addAttribute("error", "Username not found. Please try again.");
+			return "forgotpage";
+		}
+	}
+
+}
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+package com.example.demo.userentity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
+
+@Entity
+@Data
+public class userEntity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	private String firstname;
+	private String lastname;
+	private String username;
+	private String password;
+	private String email;
+	private String phone;
+
+}
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.example.demo.userrepository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.userentity.userEntity;
+
+@Repository
+public interface userRepository extends JpaRepository<userEntity, Long> {
+
+	userEntity findByUsername(String username);
+
+	userEntity findByUsernameAndPassword(String username, String password);
+}
+
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+
+
+
+
+package com.example.demo.userservice;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.userentity.userEntity;
+import com.example.demo.userrepository.userRepository;
+
+@Service
+public class userService {
+
+	@Autowired
+	private userRepository repository;
+
+	public userEntity register(userEntity user) {
+		return repository.save(user);
+	}
+
+	public userEntity login(String username, String password) {
+		return repository.findByUsernameAndPassword(username, password);
+	}
+
+	public boolean resetPassword(String username, String newPassword) {
+		userEntity user = repository.findByUsername(username);
+		if (user != null) {
+			user.setPassword(newPassword);
+			repository.save(user);
+			return true;
+		}
+		return false;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+
+
+spring.application.name=javarRegistarationSystem
+
+server.port=8098
+
+
+
+ 
+
+
+
+spring.datasource.url=jdbc:mysql://localhost:3306/javaregistarationsystem?useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=Kota@252521
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+# ===============================
+# JPA / Hibernate Properties
+# ===============================
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+# ===============================
+# Optional (Recommended)
+# ===============================
+spring.jpa.open-in-view=false

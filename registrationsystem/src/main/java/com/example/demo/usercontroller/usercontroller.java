@@ -13,20 +13,20 @@ import com.example.demo.userservice.userservice;
 
 @Controller
 public class usercontroller {
-
+ 
 	@Autowired
 	private userservice service;
 
 	@GetMapping("/registrationpage")
 	public String registrationpage() {
 		return "registrationpage";
-	}
+	} 
 
 	@GetMapping("/loginpage")
 	public String loginpage() {
 		return "loginpage";
 	}
-
+ 
 	@GetMapping("/forgotpage")
 	public String forgotpage() {
 		return "forgotpage";
