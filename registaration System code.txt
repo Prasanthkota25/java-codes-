@@ -292,3 +292,653 @@ spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
 # Optional (Recommended)
 # ===============================
 spring.jpa.open-in-view=false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Complete QA (Quality Assurance) Documentation Guide
+1. Introduction to QA
+What is QA?
+
+Quality Assurance (QA) is a process-oriented approach that ensures software products meet specified requirements, business expectations, and quality standards before release.
+
+QA Objectives
+Prevent defects
+Improve product quality
+Ensure customer satisfaction
+Reduce production issues
+Validate business requirements
+Improve software reliability and performance
+2. Software Testing Life Cycle (STLC)
+Plain Text
+Requirement Analysis
+↓
+Test Planning
+↓
+Test Case Design
+↓
+Test Environment Setup
+↓
+Test Execution
+↓
+Defect Reporting & Tracking
+↓
+Test Closure
+STLC Phases
+1. Requirement Analysis
+Understand Business Requirements
+Review User Stories
+Identify Test Scenarios
+Clarify ambiguities
+2. Test Planning
+Define scope
+Resource planning
+Risk analysis
+Testing schedule
+3. Test Case Development
+Create test cases
+Prepare test data
+Review test cases
+4. Environment Setup
+Configure test environment
+Verify build deployment
+5. Test Execution
+Execute test cases
+Log defects
+Retest fixes
+6. Test Closure
+Prepare test summary report
+Lessons learned
+Metrics collection
+3. Types of Testing
+Functional Testing
+
+Validates application features against requirements.
+
+Unit Testing
+Purpose
+
+Tests individual components or methods.
+
+Performed By
+
+Developers
+
+Example
+JavaScript
+calculateTotalPrice()
+
+Verifies:
+
+Correct calculations
+Edge cases
+Error handling
+Integration Testing
+Purpose
+
+Tests interaction between modules.
+
+Example
+Plain Text
+Frontend → API → Database
+
+Checks:
+
+API communication
+Data transfer
+Service integration
+System Testing
+Purpose
+
+Tests complete application.
+
+Example
+
+E-commerce:
+
+Login
+Search Product
+Add to Cart
+Checkout
+Payment
+End-to-End Testing (E2E)
+Purpose
+
+Validates complete user workflow.
+
+Example
+Plain Text
+User Signup
+→ Login
+→ Purchase Product
+→ Order Confirmation
+
+Tools:
+
+Playwright
+Selenium
+Cypress
+Smoke Testing
+Purpose
+
+Verify critical functionality after deployment.
+
+Checks
+
+✅ Login
+
+✅ Home Page
+
+✅ Navigation
+
+✅ Database Connectivity
+
+Goal
+
+Determine if build is stable enough for further testing.
+
+Sanity Testing
+Purpose
+
+Verify a specific fix works properly.
+
+Example
+
+Developer fixes payment issue.
+
+QA checks:
+
+Payment function
+Related checkout process
+Regression Testing
+Purpose
+
+Ensure new changes don't break existing functionality.
+
+Example
+
+After upgrading subscription module:
+
+Test:
+
+Upgrade
+Downgrade
+Cancel Subscription
+Reactivate Subscription
+
+(Exactly similar to what you're doing in Turbify.)
+
+User Acceptance Testing (UAT)
+Purpose
+
+Business users validate requirements.
+
+Performed By
+Client
+Product Owner
+Business Team
+Non-Functional Testing
+
+Tests system quality attributes.
+
+Performance Testing
+
+Measures system responsiveness and stability.
+
+Types
+Load Testing
+
+Expected user load.
+
+Example:
+
+Plain Text
+1000 concurrent users
+``
+
+Tools:
+
+JMeter
+k6
+LoadRunner
+Stress Testing
+
+Beyond expected load.
+
+Example:
+
+Plain Text
+10,000 users
+
+Checks breaking point.
+
+Spike Testing
+
+Sudden increase in traffic.
+
+Example:
+
+Plain Text
+100 → 5000 users
+Endurance Testing
+
+Runs application continuously.
+
+Example:
+
+Plain Text
+24-48 hours testing
+Volume Testing
+
+Large amount of data.
+
+Example:
+
+Plain Text
+1 Million Orders
+Security Testing
+
+Verifies application security.
+
+Checks
+Authentication
+Authorization
+Session Management
+Data Encryption
+SQL Injection
+XSS Vulnerabilities
+CSRF Issues
+
+Tools:
+
+OWASP ZAP
+Burp Suite
+Compatibility Testing
+
+Tests application on multiple platforms.
+
+Browsers
+Chrome
+Edge
+Firefox
+Safari
+Devices
+Desktop
+Mobile
+Tablet
+Operating Systems
+Windows
+Linux
+MacOS
+Android
+iOS
+Usability Testing
+
+Evaluates user experience.
+
+Checks
+Easy navigation
+User-friendly design
+Accessibility
+Responsive UI
+Accessibility Testing
+
+Ensures application usable by disabled users.
+
+Standards
+
+WCAG
+
+Checks:
+
+Keyboard navigation
+Color contrast
+Screen reader support
+Alt text
+
+Tools:
+
+Axe
+Lighthouse
+API Testing
+
+Tests backend services.
+
+Validate
+Status Codes
+Response Time
+Response Schema
+Authentication
+Authorization
+Common Codes
+Plain Text
+200 OK
+201 Created
+400 Bad Request
+401 Unauthorized
+403 Forbidden
+404 Not Found
+500 Internal Server Error
+
+Tools:
+
+Postman
+Swagger
+Rest Assured
+Database Testing
+
+Verifies database integrity.
+
+Checks
+Data validation
+Data consistency
+Stored procedures
+CRUD operations
+
+Example SQL
+
+SQL
+SELECT * FROM subscriptions
+WHERE status='active';
+
+Agile Testing
+QA Responsibilities
+During Sprint Planning
+Understand requirements
+Provide estimates
+During Development
+Review stories
+Prepare test cases
+During Testing
+Execute tests
+Report defects
+Sprint Closure
+Test summary
+UAT support
+Defect Life Cycle
+Plain Text
+New
+↓
+Assigned
+↓
+In Progress
+↓
+Fixed
+↓
+Retest
+↓
+Verified
+↓
+Closed
+
+Alternative Path:
+
+Plain Text
+New
+↓
+Assigned
+↓
+Rejected
+``
+
+or
+
+Plain Text
+Deferred
+Severity vs Priority
+Severity
+
+Impact of defect.
+
+Critical
+
+Application crash
+
+High
+
+Payment failure
+
+Medium
+
+Wrong data displayed
+
+Low
+
+UI alignment issue
+
+Priority
+
+Business importance.
+
+High Priority
+
+Checkout button missing
+
+Medium Priority
+
+Incorrect label
+
+Low Priority
+
+Minor UI spacing
+
+Test Artifacts
+Test Plan
+
+Contains:
+
+Scope
+Objectives
+Resources
+Risks
+Schedule
+Test Scenario
+
+High-level test condition.
+
+Example:
+
+Plain Text
+Verify user login functionality
+Test Case
+
+Detailed validation steps.
+
+Example:
+
+Field  ValueTest Case ID  TC_001
+Title  Verify Login
+Preconditions  User Account Exists
+Steps  Enter Username & Password
+Expected Result  Login Successful
+Test Data
+
+Input used for testing.
+
+Example:
+
+Plain Text
+Valid User
+Invalid User
+Expired User
+QA Metrics
+Test Coverage
+Plain Text
+Executed Test Cases
+-------------------
+Total Test Cases
+Defect Density
+Plain Text
+Total Defects
+-------------
+Application Size
+Defect Leakage
+Plain Text
+Production Defects
+------------------
+Total Defects
+Automation Testing
+Benefits
+Faster execution
+Reusable scripts
+CI/CD support
+Better coverage
+Popular Tools
+UI Automation
+Playwright ✅
+Selenium
+Cypress
+API Automation
+Postman
+Rest Assured
+Mobile Automation
+Appium
+CI/CD Testing
+Azure DevOps Pipeline Flow
+Plain Text
+Code Commit
+↓
+Build
+↓
+Unit Tests
+↓
+API Tests
+↓
+UI Automation
+↓
+Deploy QA
+↓
+Regression Suite
+↓
+UAT
+↓
+Production
+QA Documentation Checklist
+
+✅ BRD Review
+
+✅ User Story Review
+
+✅ Requirement Traceability Matrix (RTM)
+
+✅ Test Plan
+
+✅ Test Scenarios
+
+✅ Test Cases
+
+✅ Test Data
+
+✅ Defect Reports
+
+✅ Test Execution Report
+
+✅ Automation Scripts
+
+✅ Test Summary Report
+
+✅ Release Sign-off
+
+QA Interview Topics
+Manual Testing
+STLC
+SDLC
+Severity vs Priority
+Defect Life Cycle
+Smoke vs Sanity
+Regression Testing
+API Testing
+REST APIs
+CRUD Operations
+Status Codes
+Postman
+Database Testing
+SQL Queries
+Joins
+Validation
+Automation Testing
+Playwright
+Selenium
+Framework Design
+Agile Methodology
+Scrum
+Sprint Planning
+Retrospective
+Daily Standups
+Real-Time Turbify QA Example
+
+For Turbify Subscription Module, regression checklist:
+
+Subscription Flow
+Upgrade Plan
+Downgrade Plan
+Cancel Subscription
+Reactivate Subscription
+Renew Subscription
+Payment Success
+Payment Failure
+Refund Flow
+Website Management
+Publish Website
+Unpublish Website
+Domain Mapping
+SSL Validation
+Website Preview
+Top Ten Websites
+Publish Blocked Status
+Active Websites
+Navigation Links
+Error Page Verification
+
+This document covers nearly all fundamental and advanced QA concepts used in manual testing, automation testing, API testing, Agile QA, and enterprise product testing.
+
+Provide your feedback on BizChat
