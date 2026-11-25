@@ -942,3 +942,137 @@ Error Page Verification
 This document covers nearly all fundamental and advanced QA concepts used in manual testing, automation testing, API testing, Agile QA, and enterprise product testing.
 
 Provide your feedback on BizChat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SHOW TABLES;
+SELECT * FROM  icsdb.leave_types;
+SELECT * FROM  icsdb.holidays;
+SELECT * FROM  icsdb.Users;
+
+
+DESC leave_request;
+
+DESCRIBE users;
+DESCRIBE leave_request;
+DESCRIBE leave_request_seq;
+
+
+select *from  icsdb.users;
+
+
+USE icsdb;
+SHOW TABLES;
+
+
+
+SELECT `leave_request`.`id`,
+    `leave_request`.`applied_on`,
+    `leave_request`.`day_type`,
+    `leave_request`.`days`,
+    `leave_request`.`from_date`,
+    `leave_request`.`leave_type`,
+    `leave_request`.`manager_id`,
+    `leave_request`.`reason`,
+    `leave_request`.`status`,
+    `leave_request`.`to_date`,
+    `leave_request`.`user_id`,
+    `leave_request`.`approver_remarks`,
+    `leave_request`.`address`
+FROM `icsdb`.`leave_request`;
+
+ALTER TABLE `icsdb`.`leave_request`
+MODIFY COLUMN `id` INT NOT NULL AUTO_INCREMENT;
+
+
+SELECT * FROM icsdb.leave_request;
+
+SELECT *
+FROM icsdb.leave_request
+WHERE id = 6;
+
+
+DELETE FROM icsdb.leave_request
+WHERE id = 39;
+
+DELETE FROM icsdb.leave_request
+WHERE id IN (40,41,42);
+
+ TRUNCATE TABLE icsdb.leave_request;
+ 
+  
+SELECT id, username, role
+FROM users;
+
+UPDATE users
+SET role = 'MANAGER'
+WHERE id = 2;
+
+
+
+UPDATE icsdb.users
+SET manager = 'prranjul',
+    manager_id = 2
+WHERE id = 5;
+
+
+UPDATE icsdb.users
+SET manager_id = 2
+WHERE id = 4;
+ 
+
+
+
+UPDATE icsdb.users
+SET manager = 'sivaB',
+    manager_id = 2
+WHERE id = 1;
+ 
+ 
+ 
+ UPDATE icsdb.users
+SET
+    bu = 'IITS - TMH - Delivery',
+    sbu = 'ITS - IMS',
+    bu_head = 'Jai Gautam Mohan',
+    sbu_head = 'Jai Gautam Mohan'
+WHERE id = 5;
+ 
